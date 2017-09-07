@@ -10,7 +10,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
-@SpringBootApplication()
+@SpringBootApplication
 @EntityScan("com.andy.domain")
 @EnableJpaRepositories(basePackages = {"com.andy.dao"})
 public class SpringbootApplication extends SpringBootServletInitializer {

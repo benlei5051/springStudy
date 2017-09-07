@@ -11,6 +11,8 @@
     <modules>
         <module>modulecommon</module>
         <module>module-springboot</module>
+        <module>module-hibernateValidator</module>
+        <module>module-redis</module>
     </modules>
 
     <properties>
