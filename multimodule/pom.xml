@@ -10,9 +10,12 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>modulecommon</module>
-        <module>module-springboot</module>
-        <module>module-hibernateValidator</module>
-        <module>module-redis</module>
+        <!--<module>module-springboot</module>-->
+        <!--<module>module-hibernateValidator</module>-->
+        <!--<module>module-redis</module>-->
+        <module>multi-restdoc</module>
+        <module>multi-swagger</module>
+        <module>module-lambda</module>
     </modules>
 
     <properties>
