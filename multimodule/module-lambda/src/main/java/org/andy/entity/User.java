@@ -1,5 +1,6 @@
-package org.andy;
+package org.andy.entity;
 
+import java.io.Serializable;
 import java.util.Optional;
 
 /**
@@ -7,7 +8,10 @@ import java.util.Optional;
  * @Date: 2017/9/13 17:33
  * @Description:
  */
-public class User {
+//Optional是一个final类，未实现任何接口，所以当我们在利用该类包装定义类的属性的时候，如果我们定义的类有序列化的需求，那么因为Optional没有实现Serializable接口，这个时候执行序列化操作就会有问题：
+public class User implements Serializable{
+
+    private static final long serialVersionUID = 720727425708251976L;
     /** 用户编号 */
     private long id;
 
@@ -15,14 +19,10 @@ public class User {
 
     private int age;
 
-    private Optional<Long> phone;   //可以为空
+    private Long phone;   //可以为空
 
-    private Optional<String> email;
+    private String email;
 
-    public User(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
 
     public long getId() {
         return id;
@@ -49,18 +49,18 @@ public class User {
     }
 
     public Optional<Long> getPhone() {
-        return phone;
+        return Optional.ofNullable(this.phone);
     }
 
-    public void setPhone(Optional<Long> phone) {
+    public void setPhone(Long phone) {
         this.phone = phone;
     }
 
     public Optional<String> getEmail() {
-        return email;
+        return Optional.ofNullable(this.email);
     }
 
-    public void setEmail(Optional<String> email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 }
