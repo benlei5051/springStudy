@@ -16,6 +16,7 @@ import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.Random;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
@@ -45,7 +46,14 @@ public class LambdaDemo {
         students.add(new Student(20163001, "丁奉", 24, 5, "土木工程", "南京大学"));
     }
     public static void main(String[] args) throws  Exception{
-        LambdaDemo.lam17();
+/*        List<Person> list=new ArrayList<>();
+        Person person=new Person("AA",28);
+        list.add(person);
+        OptionalInt maxAge = list.stream()
+                .mapToInt(Person::getAge)
+                .max();
+        System.out.println(maxAge.orElse(0));*/
+      LambdaDemo.lam3();
     }
 
     /**
@@ -89,7 +97,7 @@ public class LambdaDemo {
 
         students.stream()
                 .filter(student -> "土木工程".equals(student.getMajor())).limit(2)
-                .collect(Collectors.toList()).forEach(System.out::println);
+                .forEach(System.out::println);
     }
 
     /**
@@ -105,7 +113,7 @@ public class LambdaDemo {
         students.stream()
                 .filter(student -> "土木工程".equals(student.getMajor())).sorted((s1, s2) -> s1.getAge() - s2.getAge())
                 .limit(2)
-                .collect(Collectors.toList()).forEach(System.out::println);
+                .forEach(System.out::println);
     }
 
     //排序
@@ -120,7 +128,7 @@ public class LambdaDemo {
         //降序排列
         Comparator<Person> compareAscending = (person1, person2) -> person1.ageDifference(person2);
         Comparator<Person> compareDescending = compareAscending.reversed();
-        people.stream().sorted(compareDescending).collect(Collectors.toList()).forEach(System.out::println);
+        people.stream().sorted(compareDescending).forEach(System.out::println);
     }
 
     /**
@@ -283,8 +291,10 @@ public class LambdaDemo {
      * 求年龄的最大值和最小值
      */
     public static  void lam15(){
+
 // 求最大年龄
-        Optional<Student> olderStudent = students.stream().collect(Collectors.maxBy((s1, s2) -> s1.getAge() - s2.getAge()));
+      Optional<Student> olderStudent = students.stream().collect(Collectors.maxBy((s1, s2) -> s1.getAge() - s2.getAge()));
+//        Student collect = students.stream().collect(Collectors.reducing(null, BinaryOperator.maxBy(Comparator.comparing(Student::getAge))));
 
 // 进一步简化
         Optional<Student> olderStudent2 = students.stream().collect(Collectors.maxBy(Comparator.comparing(Student::getAge)));
@@ -319,6 +329,14 @@ public class LambdaDemo {
      * java8的流式处理也为我们提供了这样的功能Collectors.groupingBy来操作集合。比如我们可以按学校对上面的学生进行分组：
      */
     public static void lam16(){
+
+        Map<String, Student> collect = students.stream().collect(Collectors.groupingBy(Student::getSchool,
+                Collectors.collectingAndThen(
+                        Collectors.maxBy(Comparator.comparingInt(Student::getAge)),
+                        Optional::get
+                )));
+
+
         Map<String, List<Student>> groups = students.stream().collect(Collectors.groupingBy(Student::getSchool));
         System.out.println(groups);
 //   groupingBy接收一个分类器Function<? super T, ? extends K> classifier，我们可以自定义分类器来实现需要的分类效果。
@@ -395,7 +413,9 @@ public class LambdaDemo {
             return 0;
         }
         return str.length();*/
-        String a=null;
+        String a="ttt";
+        Optional<Integer> s=Optional.ofNullable(a).map(String::length);
+        System.out.println(s);
         System.out.println(Optional.ofNullable(a).map(String::length).orElse(0));
     }
 
