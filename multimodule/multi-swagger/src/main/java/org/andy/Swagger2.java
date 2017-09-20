@@ -32,10 +32,21 @@ public class Swagger2 {
 
     @Bean
     public Docket createRestApi() {
+        ParameterBuilder parameterBuilder = new ParameterBuilder();
+        parameterBuilder.parameterType("header")
+                .name("Authorization")
+                .defaultValue(null)
+                .description("Carday使用IAM之前是userId，之后则是token信息")
+                .modelRef(new ModelRef("string"))
+                .required(true).build();
+        List<Parameter> parameters = new ArrayList<>();
+        parameters.add(parameterBuilder.build());
+
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("org.andy.controller"))
+              //  .apis(RequestHandlerSelectors.basePackage("org.andy.controller"))
+                .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -43,9 +54,15 @@ public class Swagger2 {
         return new ApiInfoBuilder()
                 .title("springboot利用swagger构建api文档")
                 .description("简单优雅的restfun风格，http://blog.csdn.net/forezp")
-                .termsOfServiceUrl("http://blog.csdn.net/forezp")
+                .license("Apache 2.0")
+                .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
+                .termsOfServiceUrl("")
                 .version("1.0")
+                .contact(new Contact("Hao Lin", "http://wiki.virtueit.net/display/CMDT/CARDAY+Backend+vService+API+Spec", "andy_linhao@outlook.com"))
                 .build();
+//                .termsOfServiceUrl("http://blog.csdn.net/forezp")
+//                .version("1.0")
+//                .build();
     }
 
 }

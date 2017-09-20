@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Date: 2017/9/7 14:41
  * @Description:
  */
+
+//http://localhost:8080/swagger-ui.html
 @SpringBootApplication
 public class SwaggerApplication {
     public static void main(String[] args) {

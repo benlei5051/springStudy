@@ -41,6 +41,7 @@ import java.util.Map;
     @ApiParamImplicitL：一个请求参数
     @ApiParamsImplicit 多个请求参数
  */
+@Api(value = "图书信息查询", description = "图书基本信息操作API", tags = "BookApi", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 @RestController
 @RequestMapping(value = "/books")
 public class BookContrller {

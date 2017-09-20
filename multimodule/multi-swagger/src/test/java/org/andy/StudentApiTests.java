@@ -39,8 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class StudentApiTests {
 
     private String snippetDir = "target/generated-snippets";
-    private String outputDir = "target/asciidoc";
-    //private String indexDoc = "docs/asciidoc/index.adoc";
+    private String outputDir = "asciidoc";
 
     @Autowired
     private MockMvc mockMvc;
@@ -71,7 +70,7 @@ public class StudentApiTests {
         mockMvc.perform(get("/student").param("name", "szl")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andDo(MockMvcRestDocumentation.document("getStudent", preprocessResponse(prettyPrint())));
+                .andDo(MockMvcRestDocumentation.document("test", preprocessResponse(prettyPrint())));
 
         Student student = new Student();
         student.setName("szl");
@@ -84,7 +83,7 @@ public class StudentApiTests {
                 .content(mapper.writeValueAsString(student))
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
-                .andDo(MockMvcRestDocumentation.document("addStudent", preprocessResponse(prettyPrint())));
+                .andDo(MockMvcRestDocumentation.document("test", preprocessResponse(prettyPrint())));
     }
 
 

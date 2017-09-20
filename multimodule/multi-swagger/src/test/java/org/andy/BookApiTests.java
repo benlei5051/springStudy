@@ -34,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 public class BookApiTests {
     protected String snippetDir = "target/generated-snippets";
-    protected String outputDir = "target/asciidoc";
+    protected String outputDir = "asciidoc";
     @Autowired
     protected MockMvc mockMvc;
 
@@ -64,7 +64,7 @@ public class BookApiTests {
         this.mockMvc.perform(get("/books")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
-                .andDo(MockMvcRestDocumentation.document("findBooks", preprocessResponse(prettyPrint())));
+                .andDo(MockMvcRestDocumentation.document("test", preprocessResponse(prettyPrint())));
     }
 
 

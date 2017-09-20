@@ -1,0 +1,307 @@
+== Resources
+=== BookApi
+:hardbreaks:
+图书基本信息操作API
+
+==== 创建图书
+----
+POST /books
+----
+
+===== Description
+:hardbreaks:
+创建图书
+
+===== Parameters
+[options="header"]
+|===
+|Type|Name|Description|Required|Schema|Default
+|BodyParameter|book|图书详细实体|true|<<Book>>|
+|===
+
+===== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|200|OK|string
+|201|Created|No Content
+|401|Unauthorized|No Content
+|403|Forbidden|No Content
+|404|Not Found|No Content
+|===
+
+===== Consumes
+
+* application/json
+
+===== Produces
+
+* */*
+
+==== 获取图书列表
+----
+GET /books
+----
+
+===== Description
+:hardbreaks:
+获取图书列表
+
+===== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|200|OK|<<Book>> array
+|401|Unauthorized|No Content
+|403|Forbidden|No Content
+|404|Not Found|No Content
+|===
+
+===== Consumes
+
+* application/json
+
+===== Produces
+
+* */*
+
+==== 更新信息
+----
+PUT /books/{id}
+----
+
+===== Description
+:hardbreaks:
+根据url的id来指定更新图书信息
+
+===== Parameters
+[options="header"]
+|===
+|Type|Name|Description|Required|Schema|Default
+|PathParameter|id|图书ID|true|integer (int64)|
+|BodyParameter|book|图书实体book|true|<<Book>>|
+|===
+
+===== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|200|OK|string
+|201|Created|No Content
+|401|Unauthorized|No Content
+|403|Forbidden|No Content
+|404|Not Found|No Content
+|===
+
+===== Consumes
+
+* application/json
+
+===== Produces
+
+* */*
+
+==== 删除图书
+----
+DELETE /books/{id}
+----
+
+===== Description
+:hardbreaks:
+根据url的id来指定删除图书
+
+===== Parameters
+[options="header"]
+|===
+|Type|Name|Description|Required|Schema|Default
+|PathParameter|id|图书ID|true|integer (int64)|
+|===
+
+===== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|200|OK|string
+|204|No Content|No Content
+|401|Unauthorized|No Content
+|403|Forbidden|No Content
+|===
+
+===== Consumes
+
+* application/json
+
+===== Produces
+
+* */*
+
+==== 获图书细信息
+----
+GET /books/{id}
+----
+
+===== Description
+:hardbreaks:
+根据url的id来获取详细信息
+
+===== Parameters
+[options="header"]
+|===
+|Type|Name|Description|Required|Schema|Default
+|PathParameter|id|ID|true|integer (int64)|
+|===
+
+===== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|200|OK|<<Book>>
+|401|Unauthorized|No Content
+|403|Forbidden|No Content
+|404|Not Found|No Content
+|===
+
+===== Consumes
+
+* application/json
+
+===== Produces
+
+* */*
+
+=== StudentApi
+:hardbreaks:
+学生基本信息操作API
+
+==== addStudent
+----
+POST /student
+----
+
+===== Description
+:hardbreaks:
+添加一个学生
+
+===== Parameters
+[options="header"]
+|===
+|Type|Name|Description|Required|Schema|Default
+|BodyParameter|student|student|true|<<Student>>|
+|===
+
+===== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|200|OK|No Content
+|201|Created|No Content
+|401|Unauthorized|No Content
+|403|Forbidden|No Content
+|404|Not Found|No Content
+|===
+
+===== Consumes
+
+* application/json
+
+===== Produces
+
+* */*
+
+===== Example CURL request
+:hardbreaks:
+[source,bash]
+----
+$ curl 'http://localhost:8080/student' -i -X POST -H 'Content-Type: application/json;charset=UTF-8' -H 'Accept: application/json' -d '{"id":0,"name":"szl","age":23,"sex":"男","cls":"二年级","address":"湖北麻城"}'
+----
+
+===== Example HTTP request
+:hardbreaks:
+[source,http,options="nowrap"]
+----
+POST /student HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/json
+Host: localhost:8080
+Content-Length: 85
+
+{"id":0,"name":"szl","age":23,"sex":"男","cls":"二年级","address":"湖北麻城"}
+----
+
+===== Example HTTP response
+:hardbreaks:
+[source,http,options="nowrap"]
+----
+HTTP/1.1 200 OK
+
+----
+
+==== getStudent
+----
+GET /student
+----
+
+===== Description
+:hardbreaks:
+依据学生姓名查询学生信息
+
+===== Parameters
+[options="header"]
+|===
+|Type|Name|Description|Required|Schema|Default
+|QueryParameter|name|name|true|string|
+|===
+
+===== Responses
+[options="header"]
+|===
+|HTTP Code|Description|Schema
+|200|OK|<<Student>>
+|401|Unauthorized|No Content
+|403|Forbidden|No Content
+|404|Not Found|No Content
+|===
+
+===== Consumes
+
+* application/json
+
+===== Produces
+
+* application/json
+
+===== Example CURL request
+:hardbreaks:
+[source,bash]
+----
+$ curl 'http://localhost:8080/student?name=szl' -i -H 'Accept: application/json'
+----
+
+===== Example HTTP request
+:hardbreaks:
+[source,http,options="nowrap"]
+----
+GET /student?name=szl HTTP/1.1
+Accept: application/json
+Host: localhost:8080
+
+----
+
+===== Example HTTP response
+:hardbreaks:
+[source,http,options="nowrap"]
+----
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Content-Length: 134
+
+{
+  "id" : 1,
+  "name" : "zhangsan",
+  "age" : 12,
+  "sex" : "男",
+  "cls" : "二年级",
+  "address" : "重庆市大竹林"
+}
+----
+
