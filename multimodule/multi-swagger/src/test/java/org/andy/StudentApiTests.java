@@ -70,7 +70,7 @@ public class StudentApiTests {
         mockMvc.perform(get("/student").param("name", "szl")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andDo(MockMvcRestDocumentation.document("test", preprocessResponse(prettyPrint())));
+                .andDo(MockMvcRestDocumentation.document("getStudent", preprocessResponse(prettyPrint())));
 
         Student student = new Student();
         student.setName("szl");
@@ -83,7 +83,7 @@ public class StudentApiTests {
                 .content(mapper.writeValueAsString(student))
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
-                .andDo(MockMvcRestDocumentation.document("test", preprocessResponse(prettyPrint())));
+                .andDo(MockMvcRestDocumentation.document("addStudent", preprocessResponse(prettyPrint())));
     }
 
 

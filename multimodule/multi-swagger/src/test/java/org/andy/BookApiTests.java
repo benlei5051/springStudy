@@ -64,7 +64,7 @@ public class BookApiTests {
         this.mockMvc.perform(get("/books")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
-                .andDo(MockMvcRestDocumentation.document("test", preprocessResponse(prettyPrint())));
+                .andDo(MockMvcRestDocumentation.document("findBooks", preprocessResponse(prettyPrint())));
     }
 
 
