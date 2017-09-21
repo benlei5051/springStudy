@@ -16,6 +16,7 @@
         <module>multi-restdoc</module>
         <module>multi-swagger</module>
         <module>module-lambda</module>
+        <module>module-file</module>
     </modules>
 
     <properties>
