@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Date;
 
 public class UserInfo implements Serializable {
 
@@ -14,6 +15,8 @@ public class UserInfo implements Serializable {
 
     @Size(min = 8, max = 20, message = "{username.size}")
     private String username;
+
+    private Date birthday;
 
     public Integer getId() {
         return id;
@@ -29,5 +32,13 @@ public class UserInfo implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 }

@@ -1,4 +1,4 @@
-
+#时间序列化，将时间按格式输出字符串
 spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss

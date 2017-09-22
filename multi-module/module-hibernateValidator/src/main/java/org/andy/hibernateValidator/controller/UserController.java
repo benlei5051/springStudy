@@ -1,12 +1,14 @@
 package org.andy.hibernateValidator.controller;
 
 import org.andy.hibernateValidator.domain.UserInfo;
+import org.apache.catalina.User;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.Date;
 
 /**
  * @author: andy
@@ -18,8 +20,8 @@ import javax.validation.Valid;
 public class UserController {
 
     @PostMapping(value = "/register")
-    public String register(@RequestBody @Valid UserInfo userInfo) {
-        return "成功进入";
+    public UserInfo register(@RequestBody @Valid UserInfo userInfo) {
+        userInfo.setBirthday(new Date());
+        return userInfo;
     }
-
 }
