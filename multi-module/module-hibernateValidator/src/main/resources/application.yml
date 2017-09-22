@@ -1,0 +1,16 @@
+
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      write_dates_as_timestamps: false
+    time-zone: GMT+8
+  profiles:
+    active: test
+
+
+#    用java工程而不是web工程启动下面server配置才有效
+server:
+  contextPath: /hibernate-service
+  servlet-path: /services
+

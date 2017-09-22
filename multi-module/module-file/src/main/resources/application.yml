@@ -1,0 +1,11 @@
+#server:
+#  port: 8080
+#  contextPath: /file-service
+#  servlet-path: /services
+spring:
+  http:
+    multipart:
+      max-file-size: 128kB
+      max-request-size: 128kB
+storage:
+  location: multi-module/module-file/upload-dir
