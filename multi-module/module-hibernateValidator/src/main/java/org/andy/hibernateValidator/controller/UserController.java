@@ -18,7 +18,7 @@ import java.util.Date;
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
-
+//访问路径   localhost:8082/hibernate-service/services/users/register
     @PostMapping(value = "/register")
     public UserInfo register(@RequestBody @Valid UserInfo userInfo) {
         userInfo.setBirthday(new Date());
