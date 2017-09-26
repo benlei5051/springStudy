@@ -1,6 +1,6 @@
 package org.andy.redis;
 
-import org.andy.redis.dao.RedisDao;
+import org.andy.redis.service.IRedisService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -18,16 +18,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class SpringbootRedisApplicationTests {
 
-    public static Logger logger = LoggerFactory.getLogger(SpringbootRedisApplicationTests.class);
+    private static final Logger logger = LoggerFactory.getLogger(SpringbootRedisApplicationTests.class);
 
     @Autowired
-    private RedisDao redisDao;
+    private IRedisService redisService;
 
     @Test
     public void testRedis() {
-        redisDao.setKey("name", "forezp");
-        redisDao.setKey("age", "11");
-        logger.info(redisDao.getValue("name"));
-        logger.info(redisDao.getValue("age"));
+        redisService.set("test", "andy1111");
+        logger.info(redisService.get("test").toString());
     }
 }

@@ -17,6 +17,9 @@
         <module>module-swagger</module>
         <module>module-lambda</module>
         <module>module-file</module>
+        <module>module-thread</module>
+        <module>module-beans</module>
+        <module>module-redis-message</module>
     </modules>
 
     <properties>

@@ -1,4 +1,7 @@
-package org.andy.redis.thread;
+package org.andy.thread;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,16 +13,19 @@ import java.util.concurrent.CountDownLatch;
  * @Description:
  */
 public class CountDownLatchDemo {
-    final static SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static final Logger logger= LoggerFactory.getLogger(CountDownLatchDemo.class);
+    private static final SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
     public static void main(String[] args) throws InterruptedException {
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         CountDownLatch latch=new CountDownLatch(2);//两个工人的协作
         Worker worker1=new Worker("zhang san", 5000, latch);
         Worker worker2=new Worker("li si", 8000, latch);
-        System.out.println(latch.getCount()+"-------------线程数");
+        logger.info(latch.getCount()+"-------------线程数");
         worker1.start();//
         worker2.start();//
         latch.await();//等待所有工人完成工作
-        System.out.println("all work done at "+sdf.format(new Date()));
+        logger.info("all work done at {}",sdf.format(new Date()));
     }
 
 
