@@ -67,6 +67,7 @@ public class BookContrller {
 
     @ApiOperation(value="更新信息", notes="根据url的id来指定更新图书信息")
     @ApiImplicitParams({
+
             @ApiImplicitParam(name = "id", value = "图书ID", required = true, dataType = "Long",paramType = "path"),
             @ApiImplicitParam(name = "book", value = "图书实体book", required = true, dataType = "Book")
     })

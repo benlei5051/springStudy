@@ -20,6 +20,7 @@
         <module>module-thread</module>
         <module>module-beans</module>
         <module>module-redis-message</module>
+        <module>module-cache</module>
     </modules>
 
     <properties>
