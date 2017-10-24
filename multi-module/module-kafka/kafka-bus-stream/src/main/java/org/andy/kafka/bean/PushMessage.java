@@ -30,4 +30,13 @@ public class PushMessage implements Serializable {
     public void setContent(String content) {
         this.content = content;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("PushMessage{");
+        sb.append("title='").append(title).append('\'');
+        sb.append(", content='").append(content).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

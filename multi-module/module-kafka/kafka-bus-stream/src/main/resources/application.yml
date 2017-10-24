@@ -1,0 +1,10 @@
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      write_dates_as_timestamps: false
+    time-zone: GMT+8
+
+    #output MessageChannel通道产生消息
+    #input  SubscribableChannel 订阅消息
+    #pring.cloud.stream.bindings.springCloudBusOutput

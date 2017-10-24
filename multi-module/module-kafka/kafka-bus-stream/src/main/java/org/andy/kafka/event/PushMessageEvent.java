@@ -14,6 +14,7 @@ public class PushMessageEvent extends RemoteApplicationEvent {
     private final PushMessage message;
 
     @SuppressWarnings("unused")
+    //jackson序列化反序列化必须有无参构造函数
     private PushMessageEvent() {
         // for serializers
         message = null;

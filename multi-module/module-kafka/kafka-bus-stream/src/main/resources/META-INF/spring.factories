@@ -1,5 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-org.andy.kafka.CardayBusAutoConfiguration
+org.andy.kafka.BusAutoConfiguration
 
 # Environment Post Processor
 #org.springframework.boot.env.EnvironmentPostProcessor=\

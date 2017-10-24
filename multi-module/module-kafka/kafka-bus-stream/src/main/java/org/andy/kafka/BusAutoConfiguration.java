@@ -27,13 +27,13 @@ import java.util.Map;
 @ConditionalOnBusEnabled
 @PropertySource("classpath:/config-kafka.properties")
 @RemoteApplicationEventScan("org.andy.kafka.event")
-public class CardayBusConfiguration implements ImportAware {
+public class BusAutoConfiguration implements ImportAware {
 
     @Autowired
     private ApplicationContext context;
 
     @Autowired
-    private ConfigurableEnvironment environment;
+    private ConfigurableEnvironment environment;  //动态装配spring配置文件
 
     private static final String BUS_INPUT_GROUP_CONFIG =
             "spring.cloud.stream.bindings." + SpringCloudBusClient.INPUT + ".group";
@@ -59,10 +59,8 @@ public class CardayBusConfiguration implements ImportAware {
         // spring cloud总线的 group
         if ((boolean) cardayBusAttributes.getOrDefault("consumerGroup", false)) {
             MutablePropertySources propertySources = environment.getPropertySources();
-
             Map<String, Object> properteis = new HashMap<>();
             properteis.put(BUS_INPUT_GROUP_CONFIG, environment.getProperty("spring.application.name", context.getApplicationName()));
-//            properteis.put(BUS_OUTPUT_GROUP_CONFIG, context.getId());
             propertySources.addLast(new MapPropertySource("consumer-group", properteis));
         }
 
