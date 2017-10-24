@@ -14,13 +14,12 @@ import org.springframework.stereotype.Component;
 public class BookRepositoryImpl implements BookRepository {
 
     @Override
-    @Cacheable("books")
+    @Cacheable(value="books",key = "#isbn")
     public Book getByIsbn(String isbn) {
         simulateSlowService();
         return new Book(isbn, "Some book");
     }
 
-    // Don't do this at home
     private void simulateSlowService() {
         try {
             long time = 3000L;

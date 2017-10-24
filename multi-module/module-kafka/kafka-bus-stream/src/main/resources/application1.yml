@@ -1,0 +1,18 @@
+#spring.cloud.stream.kafka.binder.brokers=10.79.96.52:9092
+#spring.cloud.stream.kafka.binder.zk-nodes=10.79.96.52:2182spring:spring:spring:
+#output生产者 input 消费者
+#spring:
+#  cloud:
+#    stream:
+#      bindings:
+#        springCloudBusOutput:
+#          producer:
+#            partitionCount: 3
+#            partitionKeyExpression: payload.id
+#      kafka:
+#        binder:
+#          brokers: 10.11.103.234:9092
+#          zk-nodes: 10.11.103.234:2181
+#          minPartitionCount: 3
+#          autoCreateTopics: true
+#          autoAddPartitions: true

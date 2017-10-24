@@ -1,0 +1,10 @@
+server:
+  port: 8082
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      write_dates_as_timestamps: false
+    time-zone: GMT+8
+  application:
+    name: consumer-1

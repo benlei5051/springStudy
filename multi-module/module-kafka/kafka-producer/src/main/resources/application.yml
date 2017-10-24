@@ -1,0 +1,13 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: kafka-producer
+  cloud:
+    stream:
+      bindings:
+        springCloudBusOutput:
+          destination: testTopic
+#output MessageChannel通道产生消息
+#input  SubscribableChannel 订阅消息
+#pring.cloud.stream.bindings.springCloudBusOutput

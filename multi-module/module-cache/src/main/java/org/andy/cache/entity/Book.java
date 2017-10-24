@@ -1,5 +1,7 @@
 package org.andy.cache.entity;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @author: andy
  * @Date: 2017/9/26 17:27

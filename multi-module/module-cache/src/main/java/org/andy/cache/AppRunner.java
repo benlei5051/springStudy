@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
  * @Date: 2017/9/26 17:31
  * @Description:
  */
+//spring boot 启动加载前执行run方法
 @Component
 public class AppRunner implements CommandLineRunner {
 
