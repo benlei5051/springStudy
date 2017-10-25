@@ -13,11 +13,10 @@
     <name>module-kafka</name>
     <url>http://maven.apache.org</url>
     <modules>
-        <module>kafka-bus-stream</module>
-        <module>kafka-producer</module>
-        <module>module-consumer</module>
-        <module>module-consumer2</module>
-        <module>module-consumer3</module>
+        <module>module-method1</module>
+        <module>module-method2</module>
+        <module>module-method2</module>
+        <module>module-method3</module>
     </modules>
 
     <properties>
@@ -35,5 +34,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 </project>
