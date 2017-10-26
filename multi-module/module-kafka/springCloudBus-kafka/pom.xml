@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>module-kafka</artifactId>
+        <groupId>org.andy</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>springCloudBus-kafka</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>bus-stream-common</module>
+        <module>bus-stream-producer</module>
+        <module>bus-stream-consumer01</module>
+        <module>bus-stream-consumer02</module>
+        <module>bus-stream-consumer03</module>
+    </modules>
+
+
+</project>

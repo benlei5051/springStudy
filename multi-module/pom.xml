@@ -34,7 +34,6 @@
         <fastdfs.version>1.25.4-RELEASE</fastdfs.version>
         <commons.ang3.version>3.4</commons.ang3.version>
         <spring.cloud.version>Finchley.M2</spring.cloud.version>
-
     </properties>
 
     <dependencyManagement>

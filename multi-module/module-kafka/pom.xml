@@ -13,10 +13,8 @@
     <name>module-kafka</name>
     <url>http://maven.apache.org</url>
     <modules>
-        <module>module-method1</module>
-        <module>module-method2</module>
-        <module>module-method2</module>
-        <module>module-method3</module>
+        <module>springCloudBus-kafka</module>
+        <module>springCloudStream-kafka</module>
     </modules>
 
     <properties>
