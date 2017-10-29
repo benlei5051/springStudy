@@ -2,6 +2,8 @@ package org.andy.swagger;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 /**
  * @author: andy
@@ -11,8 +13,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 //http://localhost:8080/swagger-ui.html
 @SpringBootApplication
-public class SwaggerApplication {
+public class SwaggerApplication  extends SpringBootServletInitializer{
+    // jar启动
     public static void main(String[] args) {
         SpringApplication.run(SwaggerApplication.class, args);
+    }
+
+    // tomcat war启动
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(SwaggerApplication.class);
     }
 }

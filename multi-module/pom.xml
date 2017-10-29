@@ -22,6 +22,7 @@
         <module>module-redis-message</module>
         <module>module-cache</module>
         <module>module-kafka</module>
+        <module>module-logback</module>
     </modules>
 
     <properties>

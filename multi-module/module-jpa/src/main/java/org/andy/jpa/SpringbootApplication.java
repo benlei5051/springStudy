@@ -1,5 +1,7 @@
 package org.andy.jpa;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -12,8 +14,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("org.andy.jpa.domain")
 @EnableJpaRepositories(basePackages = {"org.andy.jpa.dao"})
 public class SpringbootApplication extends SpringBootServletInitializer {
-
-    //  private static final Logger LOGGER = LoggerFactory.getLogger(SpringbootApplication.class);
+//      private static final Logger LOGGER = LoggerFactory.getLogger(SpringbootApplication.class);
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         logger.info("进入方法------------------------");
