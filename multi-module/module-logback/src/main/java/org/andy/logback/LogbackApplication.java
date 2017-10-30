@@ -5,8 +5,11 @@ import ch.qos.logback.core.util.StatusPrinter;
 import org.andy.logback.service.entity.Foo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author: andy
@@ -14,15 +17,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Description:
  */
 @SpringBootApplication
+@EnableScheduling
 public class LogbackApplication {
     private static final Logger LOGGER = LoggerFactory.getLogger(LogbackApplication.class);
-
     public static void main(String[] args) {
-        SpringApplication.run(LogbackApplication.class, args);
-        LOGGER.debug("进入方法debug------------------------");
-        Foo foo=new Foo();
-        foo.doIt();//定义的是debug
-        LOGGER.warn("进入方法WARN------------------------");
+        ApplicationContext applicationContext=SpringApplication.run(LogbackApplication.class, args);
+        LOGGER.debug("debug1111------------------------");
+        Foo foo=(Foo)applicationContext.getBean("foo");
+        foo.doIt();
+        LOGGER.info("info2222------------------------");
     }
 }
 

@@ -8,7 +8,8 @@ import java.util.Optional;
  * @Date: 2017/9/13 17:33
  * @Description:
  */
-//Optional是一个final类，未实现任何接口，所以当我们在利用该类包装定义类的属性的时候，如果我们定义的类有序列化的需求，那么因为Optional没有实现Serializable接口，这个时候执行序列化操作就会有问题：
+//Optional是一个final类，未实现任何接口，所以当我们在利用该类包装定义类的属性的时候，
+// 如果我们定义的类有序列化的需求，那么因为Optional没有实现Serializable接口，这个时候执行序列化操作就会有问题：
 public class User implements Serializable{
 
     private static final long serialVersionUID = 720727425708251976L;
