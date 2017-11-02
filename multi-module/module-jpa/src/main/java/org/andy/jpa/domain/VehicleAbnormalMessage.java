@@ -3,7 +3,6 @@ package org.andy.jpa.domain;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /**
  * @author: andy
@@ -14,19 +13,27 @@ import javax.persistence.Table;
 @DiscriminatorValue("vehicle")
 public class VehicleAbnormalMessage extends BaseMessage {
 
-    /** 报警位置*/
+    /**
+     * 报警位置
+     */
     @Column(name = "location")
     private String location;
 
-    /** 车辆报警Id*/
+    /**
+     * 车辆报警Id
+     */
     @Column(name = "warning_id")
     private Long warningId;
 
-    /** 车牌号*/
+    /**
+     * 车牌号
+     */
     @Column(name = "car_no")
     private String carNo;
 
-    /** 车辆所在组织机构Id*/
+    /**
+     * 车辆所在组织机构Id
+     */
     @Column(name = "org_id")
     private Long orgId;
 

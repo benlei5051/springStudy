@@ -10,7 +10,7 @@ import javax.persistence.Entity;
  */
 @Entity
 @DiscriminatorValue("order")
-public class OrderMessage extends BaseMessage{
+public class OrderMessage extends BaseMessage {
 
     private Long orderId;
 
