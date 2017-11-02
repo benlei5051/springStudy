@@ -1,4 +1,4 @@
-package org.andy.beans.service;
+package org.andy.beans.async.service;
 
 /**
  * @author: andy

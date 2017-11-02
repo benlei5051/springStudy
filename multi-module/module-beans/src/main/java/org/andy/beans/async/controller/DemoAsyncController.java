@@ -1,7 +1,7 @@
-package org.andy.beans.controller;
+package org.andy.beans.async.controller;
 
 
-import org.andy.beans.service.DemoAsyncService;
+import org.andy.beans.async.service.DemoAsyncService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;

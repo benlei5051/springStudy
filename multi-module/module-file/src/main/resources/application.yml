@@ -7,5 +7,5 @@ spring:
     multipart:
       max-file-size: 128kB
       max-request-size: 128kB
-storage:
-  location: multi-module/module-file/upload-dir
+#storage:
+#  location: multi-module/module-file/upload-dir

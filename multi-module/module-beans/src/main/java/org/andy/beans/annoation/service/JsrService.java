@@ -1,6 +1,6 @@
-package org.andy.beans.service;
+package org.andy.beans.annoation.service;
 
-import org.andy.beans.dao.JsrDao;
+import org.andy.beans.annoation.dao.JsrDao;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;

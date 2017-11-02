@@ -1,4 +1,4 @@
-#reids:
-#  mode:
-#    pool:
-#      enabled: false
+reids:
+  mode:
+    pool:
+      enabled: true

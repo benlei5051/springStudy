@@ -1,4 +1,4 @@
-package org.andy.beans.dao;
+package org.andy.beans.annoation.dao;
 
 import org.springframework.stereotype.Repository;
 

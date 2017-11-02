@@ -25,8 +25,8 @@ public class BeansApplication extends SpringBootServletInitializer {
     }
     public static void main(String[] args) {
         ApplicationContext applicationContext=SpringApplication.run(BeansApplication.class, args);
-       /* InjectBean bean=(InjectBean)applicationContext.getBean("injectBean");//如果找不到，抛异常
+        InjectBean bean=(InjectBean)applicationContext.getBean("injectBean");//如果找不到，抛异常
         Optional<InjectBean> optional=Optional.ofNullable(bean);
-        optional.ifPresent(InjectBean::eat);*/
+        optional.ifPresent(InjectBean::eat);
     }
 }

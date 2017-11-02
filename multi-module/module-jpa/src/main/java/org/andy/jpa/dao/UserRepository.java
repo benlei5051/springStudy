@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 /**
  * Created by jh on 2017/8/12.
  */
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 
     /**
      * Find by name.
@@ -35,4 +35,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
      */
     @Query("from User u where u.name=:name")
     User findUser(@Param("name") String name);
+
+/*    @Query("select install from DeviceInstallDevDetail devDetail " +
+            "inner join devDetail.installNo install " +
+            "inner join devDetail.device device on (device.snNumber = :deviceNo " +
+            "or device.imeiNumber = :deviceNo or device.iccidNumber = :deviceNo)" +
+            "where install.installStaffId = :workerId order by install.opDate desc")
+    List<DeviceInstall> findInstallByDeviceNoAndWorker(@Param("deviceNo") String deviceNo,
+                                                       @Param("workerId") Long workerId);*/
 }

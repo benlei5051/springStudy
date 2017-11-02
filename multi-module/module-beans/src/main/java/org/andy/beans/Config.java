@@ -2,7 +2,7 @@ package org.andy.beans;
 
 import org.andy.beans.condition.InjectBean;
 import org.andy.beans.condition.PoolOrClusterEnabled;
-import org.andy.beans.service.JsrService;
+import org.andy.beans.annoation.service.JsrService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -26,10 +26,10 @@ public class Config {
             jsrService.destory();
         };
     }
-    @Bean
+/*    @Bean
     @PoolOrClusterEnabled
     public InjectBean injectBean(){
         return new InjectBean();
-    }
+    }*/
 
 }
