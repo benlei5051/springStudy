@@ -529,6 +529,7 @@ public class LambdaDemo {
         people.stream().min(Person::ageDifference).ifPresent(System.out::println);
         people.stream().min(Person::ageDifference);
         people.stream().max((person1, person2) -> person1.getAge() - person2.getAge()).ifPresent(System.out::println);
+        people.stream().max(Comparator.comparing(Person::getAge)).ifPresent(System.out::println);
     }
 
     /**

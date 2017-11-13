@@ -1,4 +1,4 @@
-package org.andy.thread;
+package org.andy.thread.threadWait;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
