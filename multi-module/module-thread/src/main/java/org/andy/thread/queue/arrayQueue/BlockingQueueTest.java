@@ -76,7 +76,7 @@ public class BlockingQueueTest {
                 try {
                     while (true) {
                         // 消费苹果
-                        System.out.println("消费者准备消费苹果："
+                        System.out.println("消费者"+Thread.currentThread().getName()+"准备消费苹果："
                                 + System.currentTimeMillis());
                         basket.consume();
                         System.out.println("消费者消费苹果完毕："
