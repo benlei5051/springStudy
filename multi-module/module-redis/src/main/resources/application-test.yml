@@ -1,7 +1,7 @@
 #redis(分片)
 spring:
   redis:
-    host: localhost
+    host: 10.11.103.234
     port: 6379
     password:                 # Redis服务器连接密码（默认为空）
     database: 0               # Redis数据库索引（默认为0） 用命令切换select 1
