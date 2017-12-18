@@ -25,6 +25,7 @@ public class ProducerService {
        PushMessage pushMessage=new PushMessage();
        pushMessage.setContent("测试内容");
        pushMessage.setTitle("测试标题");
+       // 第三个参数用来限定哪些服务需要接收处理这个事件，其他的将不会处理这个事件。
        PushMessageEvent event =
                new PushMessageEvent(this, context.getId(), null, pushMessage);
        context.publishEvent(event);
