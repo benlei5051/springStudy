@@ -23,6 +23,7 @@
         <module>module-cache</module>
         <module>module-kafka</module>
         <module>module-logback</module>
+        <module>module-configuration</module>
     </modules>
 
     <properties>
@@ -35,6 +36,8 @@
         <fastdfs.version>1.25.4-RELEASE</fastdfs.version>
         <commons.ang3.version>3.4</commons.ang3.version>
         <spring.cloud.version>Finchley.M2</spring.cloud.version>
+        <lombok.version>1.16.18</lombok.version>
+
     </properties>
 
     <dependencyManagement>
@@ -43,6 +46,11 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons.ang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
             </dependency>
             <!-- fastDFS -->
             <dependency>

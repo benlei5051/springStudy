@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("storage")
 public class StorageProperties {
     /**
-     * 文件位置
+     * the file location
      */
     private String location;
 
