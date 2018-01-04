@@ -1,8 +1,0 @@
-#spring.redis.cache.clusterNodes=192.168.xx.xx:6379,192.168.xx.:6380,192.168.xx.xx:6381
-# spring.redis.cache.commandTimeout=5000
-#redis 集群spring:
-spring:
-  redis:
-    cluster:
-      nodes: 192.168.223.132:7000,192.168.223.132:7001,192.168.223.132:7002,192.168.223.132:7003,192.168.223.132:7004,192.168.223.132:7005
-      max-redirects: 3

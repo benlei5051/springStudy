@@ -1,5 +1,6 @@
 package org.andy.configuration;
 
+import lombok.extern.slf4j.Slf4j;
 import org.andy.configuration.bean.ConfigBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
@@ -18,13 +19,10 @@ import java.util.Optional;
  */
 @SpringBootApplication
 @EnableConfigurationProperties({ConfigBean.class})
-public class ConfigurationApplication extends SpringBootServletInitializer {
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        logger.info("进入方法------------------------");
-        return application.sources(ConfigurationApplication.class);
-    }
+@Slf4j
+public class ConfigurationApplication{
     public static void main(String[] args) {
+        log.info("---------------");
         ApplicationContext applicationContext= SpringApplication.run(ConfigurationApplication.class, args);
         ConfigBean configBean=(ConfigBean)applicationContext.getBean("configBean");//如果找不到，抛异常
         System.out.println(configBean.getName());
