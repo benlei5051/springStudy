@@ -1,15 +1,18 @@
 package org.andy.kafka.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import java.io.Serializable;
-
-
+//父类上标注，供子类序列化
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 public class PushMessage implements Serializable {
 
     /**
      * serialVersionUID
      */
     private static final long serialVersionUID = 8008135763593983150L;
-
 
     private String title;
 
@@ -29,14 +32,5 @@ public class PushMessage implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("PushMessage{");
-        sb.append("title='").append(title).append('\'');
-        sb.append(", content='").append(content).append('\'');
-        sb.append('}');
-        return sb.toString();
     }
 }

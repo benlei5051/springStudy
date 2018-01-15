@@ -8,11 +8,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/**
- * @Author: joe
- * @Date: 17-8-11 下午9:50.
- * @Description:
- */
+
 @Retention(value = RetentionPolicy.RUNTIME)
 @Target(value = {ElementType.TYPE })
 @Documented

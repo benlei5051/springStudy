@@ -1,7 +1,7 @@
 package org.andy.consumer.service;
 
 import org.andy.kafka.bean.PushMessage;
-import org.andy.kafka.event.PushMessageEvent;
+import org.andy.kafka.event.PushMessageRemoteApplicationEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.bus.event.RemoteApplicationEvent;
@@ -20,8 +20,8 @@ public class ConsumerService {
 
     @EventListener(classes = RemoteApplicationEvent.class)
     public void receiveMessage(RemoteApplicationEvent event) {
-        if (event instanceof PushMessageEvent) {
-            PushMessage message = ((PushMessageEvent) event).getMessage();
+        if (event instanceof PushMessageRemoteApplicationEvent) {
+            PushMessage message = ((PushMessageRemoteApplicationEvent) event).getMessage();
 
             if (message != null) {
                 // 消息入库

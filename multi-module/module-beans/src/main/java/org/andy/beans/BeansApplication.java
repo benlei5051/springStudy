@@ -1,6 +1,9 @@
 package org.andy.beans;
 
 import org.andy.beans.condition.InjectBean;
+import org.andy.beans.event.PushMessage;
+import org.andy.beans.event.PushMessageRemoteApplicationEvent;
+import org.andy.beans.event.PushTest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -16,7 +19,7 @@ import java.util.Optional;
  * @Description:
  */
 @SpringBootApplication
-@EnableAsync
+//@EnableAsync
 public class BeansApplication extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
@@ -25,8 +28,11 @@ public class BeansApplication extends SpringBootServletInitializer {
     }
     public static void main(String[] args) {
         ApplicationContext applicationContext=SpringApplication.run(BeansApplication.class, args);
-        InjectBean bean=(InjectBean)applicationContext.getBean("injectBean");//如果找不到，抛异常
+
+        applicationContext.publishEvent(new PushMessage("test1","aaaaaaaaaa"));
+        applicationContext.publishEvent(new PushTest("tes2","bbbbbbbbbbbbb"));
+       /* InjectBean bean=(InjectBean)applicationContext.getBean("injectBean");//如果找不到，抛异常
         Optional<InjectBean> optional=Optional.ofNullable(bean);
-        optional.ifPresent(InjectBean::eat);
+        optional.ifPresent(InjectBean::eat);*/
     }
 }

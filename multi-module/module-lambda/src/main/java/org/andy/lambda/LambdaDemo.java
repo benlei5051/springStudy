@@ -385,7 +385,8 @@ public class LambdaDemo {
                 new Person("Greg", 35));
         Comparator<Person> byAge = Comparator.comparing(Person::getAge);
         Map<Character, Optional<Person>> oldestPersonInEachAlphabet = people.stream()
-                .collect(Collectors.groupingBy(person -> person.getName().charAt(0), Collectors.reducing(BinaryOperator.maxBy(byAge))));
+          //      .collect(Collectors.groupingBy(person -> person.getName().charAt(0), Collectors.reducing(BinaryOperator.maxBy(byAge))));
+                .collect(Collectors.groupingBy(person -> person.getName().charAt(0), Collectors.maxBy(byAge)));
         System.out.println("Oldest person in each alphabet: " + oldestPersonInEachAlphabet.get('S'));
         //以上的groupingBy方法的第二个参数执行了归约(Reduction)操作，而不是之前的映射(Mapping)操作。
         // 并且利用了BinaryOperator中定义的静态方法maxBy。
