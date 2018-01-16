@@ -43,6 +43,7 @@ public class TicketsRunnable {
         th2.start();
         th1.start();
         th3.start();
+        System.out.println("---完成");
 
     }
 

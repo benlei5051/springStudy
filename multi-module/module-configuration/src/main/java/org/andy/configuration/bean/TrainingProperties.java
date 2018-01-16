@@ -1,4 +1,4 @@
-package org.andy.swagger.entity;
+package org.andy.configuration.bean;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -17,7 +17,7 @@ public class TrainingProperties {
     @Value("${random_number}")
     private Integer number;
 
-    @Value("${server.port:888}")
+    @Value("${servers.port:888}")
     private String serverPort;
 
     public String getFilePath() {

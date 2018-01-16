@@ -1,0 +1,37 @@
+package org.andy.beans.condition;
+
+import lombok.extern.slf4j.Slf4j;
+import org.andy.beans.event.PushMessage;
+import org.andy.beans.event.PushTest;
+import org.springframework.beans.BeansException;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import java.util.Optional;
+
+/**
+ * @author: andy
+ * @Date: 2017/9/25 14:59
+ * @Description:
+ */
+@SpringBootApplication
+@Slf4j
+public class BeansApplication{
+
+    public static void main(String[] args) {
+        String[] args2 = new String[]{"--server.port=8802","--spring.profiles.active=dev"};
+        ConfigurableApplicationContext applicationContext = SpringApplication.run(BeansApplication.class, args2);
+        InjectBean bean= null;
+        try {
+            bean = (InjectBean)applicationContext.getBean("injectBean");
+        } catch (BeansException e) {
+            log.info("InjectBean is null");
+        }
+        Optional<InjectBean> optional=Optional.ofNullable(bean);
+        //optional是null，则不执行InjectBean中的eat方法
+        optional.ifPresent(InjectBean::eat);
+    }
+}

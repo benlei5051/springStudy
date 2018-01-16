@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * @Date: 2017/9/26 15:50
  * @Description:
  */
-@PoolOrClusterEnabled
+@InjectEnabled
 @Component
 public class InjectBean {
     public void eat(){

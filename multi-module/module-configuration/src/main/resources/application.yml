@@ -3,6 +3,9 @@ server:
   tomcat:
     uri-encoding: utf-8
   context-path: /configDemo
+spring:
+  profiles:
+    active: dev
 
 
 

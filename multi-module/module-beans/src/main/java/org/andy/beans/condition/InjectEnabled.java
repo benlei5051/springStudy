@@ -17,10 +17,10 @@ import java.lang.annotation.Target;
  * havingValue=true 当配置项reids.mode.pool.enabled的值包含相应的true值，该bean会被spring容器托管
  * matchIfMissing=true:如果该配置项缺失，该bean也会被spirng容器托管
  */
-@ConditionalOnProperty(value = PoolOrClusterEnabled.POOL_CLUSTER_ENABLED, havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(value = InjectEnabled.INJECT_ENABLED, havingValue = "true", matchIfMissing = true)
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.TYPE, ElementType.METHOD })
-public @interface PoolOrClusterEnabled {
-    public static String POOL_CLUSTER_ENABLED = "reids.mode.pool.enabled";
+public @interface InjectEnabled {
+    public static String INJECT_ENABLED = "inject.enabled";
 }
 

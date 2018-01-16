@@ -1,17 +1,13 @@
 package org.andy.beans;
 
-import org.andy.beans.condition.InjectBean;
 import org.andy.beans.event.PushMessage;
-import org.andy.beans.event.PushMessageRemoteApplicationEvent;
 import org.andy.beans.event.PushTest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
-import org.springframework.scheduling.annotation.EnableAsync;
-
-import java.util.Optional;
+import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * @author: andy
@@ -27,10 +23,11 @@ public class BeansApplication extends SpringBootServletInitializer {
         return application.sources(BeansApplication.class);
     }
     public static void main(String[] args) {
-        ApplicationContext applicationContext=SpringApplication.run(BeansApplication.class, args);
+        ConfigurableApplicationContext run = SpringApplication.run(BeansApplication.class, args);
 
-        applicationContext.publishEvent(new PushMessage("test1","aaaaaaaaaa"));
-        applicationContext.publishEvent(new PushTest("tes2","bbbbbbbbbbbbb"));
+        run.publishEvent(new PushMessage("test1","aaaaaaaaaa"));
+        run.publishEvent(new PushTest("tes2","bbbbbbbbbbbbb"));
+        run.close();
        /* InjectBean bean=(InjectBean)applicationContext.getBean("injectBean");//如果找不到，抛异常
         Optional<InjectBean> optional=Optional.ofNullable(bean);
         optional.ifPresent(InjectBean::eat);*/

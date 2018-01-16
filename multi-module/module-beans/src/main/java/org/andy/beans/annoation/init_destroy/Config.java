@@ -1,8 +1,5 @@
-package org.andy.beans;
+package org.andy.beans.annoation.init_destroy;
 
-import org.andy.beans.condition.InjectBean;
-import org.andy.beans.condition.PoolOrClusterEnabled;
-import org.andy.beans.annoation.service.JsrService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -23,13 +20,6 @@ public class Config {
             System.out.println("Let's inspect the beans provided by Spring Boot:");
             JsrService jsrService=(JsrService) applicationContext.getBean("jsrService");
             jsrService.save("data");
-            jsrService.destory();
         };
     }
-/*    @Bean
-    @PoolOrClusterEnabled
-    public InjectBean injectBean(){
-        return new InjectBean();
-    }*/
-
 }

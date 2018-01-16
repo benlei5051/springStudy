@@ -1,6 +1,6 @@
-package org.andy.beans.annoation.service;
+package org.andy.beans.annoation.init_destroy;
 
-import org.andy.beans.annoation.dao.JsrDao;
+import org.andy.beans.annoation.init_destroy.JsrDao;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +13,7 @@ import javax.annotation.Resource;
  * @Description:
  */
 @Service
-public class JsrService {
+public class JsrService{
 
     @Resource
     private JsrDao jsrDao;
@@ -35,4 +35,5 @@ public class JsrService {
     public void save(String arg) {
         jsrDao.save(arg);
     }
+
 }

@@ -17,7 +17,10 @@ public class DemoAsyncServiceImpl implements DemoAsyncService {
     public Future<String> doTaskOne() throws Exception {
         System.out.println("开始做任务一");
         long start = System.currentTimeMillis();
-        Thread.sleep(random.nextInt(10000));
+        for(int i=0;i<1000;i++){
+            System.out.println(i);
+        }
+   //     Thread.sleep(random.nextInt(10000));
         long end = System.currentTimeMillis();
         System.out.println("完成任务一，耗时：" + (end - start) + "毫秒");
         return new AsyncResult<>("任务一完成");
@@ -27,7 +30,7 @@ public class DemoAsyncServiceImpl implements DemoAsyncService {
     public Future<String> doTaskTwo() throws Exception {
         System.out.println("开始做任务二");
         long start = System.currentTimeMillis();
-        Thread.sleep(random.nextInt(10000));
+  //      Thread.sleep(random.nextInt(10000));
         long end = System.currentTimeMillis();
         System.out.println("完成任务二，耗时：" + (end - start) + "毫秒");
         return new AsyncResult<>("任务二完成");
@@ -37,7 +40,7 @@ public class DemoAsyncServiceImpl implements DemoAsyncService {
     public Future<String> doTaskThree() throws Exception {
         System.out.println("开始做任务三");
         long start = System.currentTimeMillis();
-        Thread.sleep(random.nextInt(10000));
+   //     Thread.sleep(random.nextInt(10000));
         long end = System.currentTimeMillis();
         System.out.println("完成任务三，耗时：" + (end - start) + "毫秒");
         return new AsyncResult<>("任务三完成");

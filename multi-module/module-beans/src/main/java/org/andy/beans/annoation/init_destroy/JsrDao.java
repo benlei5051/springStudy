@@ -1,4 +1,4 @@
-package org.andy.beans.annoation.dao;
+package org.andy.beans.annoation.init_destroy;
 
 import org.springframework.stereotype.Repository;
 

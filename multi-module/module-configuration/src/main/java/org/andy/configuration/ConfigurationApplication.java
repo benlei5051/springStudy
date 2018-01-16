@@ -2,6 +2,7 @@ package org.andy.configuration;
 
 import lombok.extern.slf4j.Slf4j;
 import org.andy.configuration.bean.ConfigBean;
+import org.andy.configuration.bean.TrainingProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,6 +26,8 @@ public class ConfigurationApplication{
         log.info("---------------");
         ApplicationContext applicationContext= SpringApplication.run(ConfigurationApplication.class, args);
         ConfigBean configBean=(ConfigBean)applicationContext.getBean("configBean");//如果找不到，抛异常
+        TrainingProperties trainingProperties=(TrainingProperties)applicationContext.getBean("trainingProperties");//如果找不到，抛异常
+        System.out.println(trainingProperties.toString());
         System.out.println(configBean.getName());
 
     }

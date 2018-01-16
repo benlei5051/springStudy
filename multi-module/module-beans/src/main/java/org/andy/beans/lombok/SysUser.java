@@ -1,4 +1,4 @@
-package org.andy.beans.entity;
+package org.andy.beans.lombok;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
