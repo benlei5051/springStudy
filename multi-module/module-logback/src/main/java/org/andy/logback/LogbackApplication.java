@@ -17,14 +17,11 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * @Description:
  */
 @SpringBootApplication
-@EnableScheduling
 public class LogbackApplication {
     private static final Logger LOGGER = LoggerFactory.getLogger(LogbackApplication.class);
     public static void main(String[] args) {
-        ApplicationContext applicationContext=SpringApplication.run(LogbackApplication.class, args);
+        SpringApplication.run(LogbackApplication.class, args);
         LOGGER.debug("debug1111------------------------");
-        Foo foo=(Foo)applicationContext.getBean("foo");
-        foo.doIt();
         LOGGER.info("info2222------------------------");
     }
 }

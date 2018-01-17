@@ -23,17 +23,17 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @Description:
  */
 @Configuration
-@EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
     /*缓存的产品很多种，本工程主要讲redis作为缓存工具*/
     @Bean
     //这个功能和@Cacheable(value="books",key = "'test'+#isbn")中的key属性一样的效果
+    //key :org.andy.cache.dao.impl.BookRepositoryImpl-getByIsbn-isbn1234
     @Override
     public KeyGenerator keyGenerator() {
         return (target, method, params) -> {
             StringBuilder sb = new StringBuilder();
-//            sb.append(target.getClass().getName()+"-");
-//            sb.append(method.getName()+"-");
+            sb.append(target.getClass().getName()+"-");
+            sb.append(method.getName()+"-");
             for (Object obj : params) {
                 sb.append(obj.toString());
             }
@@ -45,7 +45,7 @@ public class RedisConfig extends CachingConfigurerSupport {
     public CacheManager cacheManager(RedisTemplate redisTemplate) {
         RedisCacheManager rcm=new RedisCacheManager(redisTemplate);
         //设置缓存过期时间
-        rcm.setDefaultExpiration(3600);//秒
+      //  rcm.setDefaultExpiration(3600);//秒
         return rcm;
     }
 

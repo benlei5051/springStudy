@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+
 /**
  * @author: andy
  * @Date: 2017/10/27 16:31
@@ -12,15 +14,13 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class Foo {
-    static final Logger logger = LoggerFactory.getLogger(Foo.class);
-    @Scheduled(fixedRate = 30000)
-    public void doIt() {
-        for (int i=0;i<1000;i++){
-            logger.trace("Did it again!------trace");
-            logger.debug("Did it again!------debug");
-            logger.warn("Did it again!-------warn");
-        }
+    private static final Logger logger = LoggerFactory.getLogger(Foo.class);
 
+    @PostConstruct
+    public void doIt() {
+        logger.trace("Did it again!------trace");
+        logger.debug("Did it again!------debug");
+        logger.warn("Did it again!-------warn");
     }
 }
 

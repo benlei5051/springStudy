@@ -14,7 +14,8 @@ import org.springframework.stereotype.Component;
 public class BookRepositoryImpl implements BookRepository {
 
     @Override
-    @Cacheable(value="books",key = "#isbn")
+  //  @Cacheable(value="books",key = "#isbn")
+    @Cacheable("bookCache")
     public Book getByIsbn(String isbn) {
         simulateSlowService();
         return new Book(isbn, "Some book");
