@@ -10,22 +10,19 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>module-common</module>
-        <module>module-jpa</module>
-        <module>module-hibernateValidator</module>
+        <!--<module>module-jpa</module>-->
+        <!--<module>module-hibernateValidator</module>-->
         <module>module-redis-usage</module>
-        <module>module-restdoc</module>
-        <module>module-swagger</module>
-        <module>module-lambda</module>
-        <module>module-file</module>
-        <module>module-thread</module>
-        <module>module-beans</module>
-        <module>module-redis-message</module>
-        <module>module-cache</module>
-        <module>module-kafka</module>
-        <module>module-logback</module>
-        <module>module-configuration</module>
-        <module>module-common-redis</module>
-        <module>module-jackson</module>
+        <!--<module>module-restdoc</module>-->
+        <!--<module>module-swagger</module>-->
+        <!--<module>module-lambda</module>-->
+        <!--<module>module-file</module>-->
+        <!--<module>module-thread</module>-->
+        <!--<module>module-beans</module>-->
+        <!--<module>module-kafka</module>-->
+        <!--<module>module-logback</module>-->
+        <!--<module>module-configuration</module>-->
+        <!--<module>module-jackson</module>-->
     </modules>
 
     <properties>
@@ -39,7 +36,6 @@
         <commons.ang3.version>3.4</commons.ang3.version>
         <spring.cloud.version>Finchley.M2</spring.cloud.version>
         <lombok.version>1.16.18</lombok.version>
-
     </properties>
 
     <dependencyManagement>
@@ -153,9 +149,9 @@
             </properties>
         </profile>
         <profile>
-            <id>cd_dev</id>
+            <id>cr_dev</id>
             <properties>
-                <package.environment>cd_dev</package.environment>
+                <package.environment>cr_dev</package.environment>
             </properties>
         </profile>
     </profiles>

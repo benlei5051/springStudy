@@ -13,8 +13,22 @@
     <name>module-redis</name>
     <url>http://maven.apache.org</url>
     <modules>
-        <module>redis-example-manual</module>
-        <module>redis-example-auto</module>
+        <module>redis-common</module>
+        <module>redis-cache</module>
+        <module>redis-message</module>
     </modules>
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.andy</groupId>
+                <artifactId>redis-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.andy</groupId>
+                <artifactId>module-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
