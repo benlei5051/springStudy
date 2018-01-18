@@ -1,4 +1,4 @@
-package org.andy.configuration.bean;
+package org.andy.beans.configuration.bean;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

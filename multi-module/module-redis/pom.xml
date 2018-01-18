@@ -24,11 +24,6 @@
                 <artifactId>redis-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.andy</groupId>
-                <artifactId>module-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

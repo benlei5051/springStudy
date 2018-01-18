@@ -19,6 +19,13 @@
         <module>bus-stream-consumer02</module>
         <module>bus-stream-consumer03</module>
     </modules>
-
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.andy</groupId>
+                <artifactId>bus-stream-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

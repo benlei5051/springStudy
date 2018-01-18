@@ -1,4 +1,4 @@
-package org.andy.jackson.entity.type;
+package org.andy.beans.jackson.entity.type;
 
 import java.util.List;
 

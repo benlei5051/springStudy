@@ -1,16 +1,14 @@
-package org.andy.jackson.test;
+package org.andy.beans.jackson.demo;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.andy.jackson.entity.User1;
-import org.andy.jackson.entity.type.BaseClass;
-import org.andy.jackson.entity.type.Impl1;
-import org.andy.jackson.entity.type.Impl2;
-import org.andy.jackson.entity.type.PojoWithTypedObjects;
+import org.andy.beans.jackson.entity.type.BaseClass;
+import org.andy.beans.jackson.entity.type.Impl1;
+import org.andy.beans.jackson.entity.type.Impl2;
+import org.andy.beans.jackson.entity.type.PojoWithTypedObjects;
+
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 

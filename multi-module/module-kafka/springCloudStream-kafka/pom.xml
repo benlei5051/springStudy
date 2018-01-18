@@ -18,5 +18,13 @@
         <module>stream-producer</module>
         <module>stream-integration</module>
     </modules>
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.andy</groupId>
+                <artifactId>stream-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

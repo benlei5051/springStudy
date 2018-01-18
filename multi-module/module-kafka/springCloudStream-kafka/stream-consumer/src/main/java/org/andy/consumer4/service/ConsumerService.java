@@ -14,11 +14,11 @@ import org.springframework.cloud.stream.messaging.Source;
  * @Date: 2017/10/24 18:54
  * @Description:
  */
-@EnableBinding(Sink.class)
+@EnableBinding(MyChannel.class)
 public class ConsumerService {
     private final Logger logger = LoggerFactory.getLogger(ConsumerService.class);
 
-    @StreamListener(Sink.INPUT)
+    @StreamListener(MyChannel.INPUT)
     public void process(String msg) {
         logger.info("received:--------"+msg);
     }

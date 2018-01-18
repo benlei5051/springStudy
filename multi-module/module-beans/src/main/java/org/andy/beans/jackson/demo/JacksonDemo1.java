@@ -1,7 +1,7 @@
-package org.andy.jackson.test;
+package org.andy.beans.jackson.demo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.andy.jackson.entity.User1;
+import org.andy.beans.jackson.entity.User1;
 
 import java.io.IOException;
 import java.text.ParseException;

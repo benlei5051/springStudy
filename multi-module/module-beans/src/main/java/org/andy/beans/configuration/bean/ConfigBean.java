@@ -1,4 +1,4 @@
-package org.andy.configuration.bean;
+package org.andy.beans.configuration.bean;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
