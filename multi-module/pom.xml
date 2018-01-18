@@ -10,19 +10,19 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>module-common</module>
-        <!--<module>module-jpa</module>-->
-        <!--<module>module-hibernateValidator</module>-->
+        <module>module-jpa</module>
+        <module>module-hibernateValidator</module>
         <module>module-redis-usage</module>
-        <!--<module>module-restdoc</module>-->
-        <!--<module>module-swagger</module>-->
-        <!--<module>module-lambda</module>-->
-        <!--<module>module-file</module>-->
-        <!--<module>module-thread</module>-->
-        <!--<module>module-beans</module>-->
-        <!--<module>module-kafka</module>-->
-        <!--<module>module-logback</module>-->
-        <!--<module>module-configuration</module>-->
-        <!--<module>module-jackson</module>-->
+        <module>module-restdoc</module>
+        <module>module-swagger</module>
+        <module>module-lambda</module>
+        <module>module-file</module>
+        <module>module-thread</module>
+        <module>module-beans</module>
+        <module>module-kafka</module>
+        <module>module-logback</module>
+        <module>module-configuration</module>
+        <module>module-jackson</module>
     </modules>
 
     <properties>
