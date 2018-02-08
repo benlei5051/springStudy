@@ -1,12 +1,9 @@
-package org.andy.beans;
+package org.andy.beans.event;
 
-import org.andy.beans.event.PushMessage;
-import org.andy.beans.event.PushTest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 
 /**
@@ -24,12 +21,8 @@ public class BeansApplication extends SpringBootServletInitializer {
     }
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(BeansApplication.class, args);
-
         run.publishEvent(new PushMessage("test1","aaaaaaaaaa"));
         run.publishEvent(new PushTest("tes2","bbbbbbbbbbbbb"));
         run.close();
-       /* InjectBean bean=(InjectBean)applicationContext.getBean("injectBean");//如果找不到，抛异常
-        Optional<InjectBean> optional=Optional.ofNullable(bean);
-        optional.ifPresent(InjectBean::eat);*/
     }
 }

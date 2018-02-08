@@ -1,4 +1,4 @@
-package org.andy.jpa.domain;
+package org.andy.jpa.entity;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.SequenceGenerator;
 import java.util.Date;
 
 /**

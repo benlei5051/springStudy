@@ -1,4 +1,4 @@
-package org.andy.jpa.domain;
+package org.andy.jpa.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

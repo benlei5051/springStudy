@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 @SpringBootApplication
-@EntityScan("org.andy.jpa.domain")
+@EntityScan("org.andy.jpa.entity")
 @EnableJpaRepositories(basePackages = {"org.andy.jpa.dao"})
 public class SpringbootApplication extends SpringBootServletInitializer {
 //      private static final Logger LOGGER = LoggerFactory.getLogger(SpringbootApplication.class);

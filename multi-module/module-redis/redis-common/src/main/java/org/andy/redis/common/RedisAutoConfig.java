@@ -32,10 +32,6 @@ import java.awt.print.Book;
  * 执行afterPropertiesSet方法。并且stringRedisTemplate也会去执行afterPropertiesSet方法
  * 方法名要是改为redisTemplate(请看RedisConfiguration源码)，只会实例化我自己的StringRedisTemplate。
  */
-
-/**
-
- */
 @Configuration
 @ComponentScan
 @PropertySource(value = {
@@ -56,7 +52,6 @@ public class RedisAutoConfig {
         GenericJackson2JsonRedisSerializer jackson2JsonRedisSerializer = new GenericJackson2JsonRedisSerializer("type");
         template.setValueSerializer(jackson2JsonRedisSerializer);
         template.setHashValueSerializer(jackson2JsonRedisSerializer);
-
         return template;
     }
 

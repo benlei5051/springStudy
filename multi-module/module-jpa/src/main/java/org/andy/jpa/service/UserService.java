@@ -4,7 +4,7 @@ package org.andy.jpa.service;
  * Created by jh on 2017/8/12.
  */
 
-import org.andy.jpa.domain.User;
+import org.andy.jpa.entity.User;
 
 /**
  * The Interface UserService.

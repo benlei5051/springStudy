@@ -16,6 +16,7 @@
         <module>redis-common</module>
         <module>redis-cache</module>
         <module>redis-message</module>
+        <module>redis-sessionmanager</module>
     </modules>
     <dependencyManagement>
         <dependencies>

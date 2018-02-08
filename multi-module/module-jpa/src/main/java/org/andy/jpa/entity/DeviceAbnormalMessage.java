@@ -1,4 +1,4 @@
-package org.andy.jpa.domain;
+package org.andy.jpa.entity;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

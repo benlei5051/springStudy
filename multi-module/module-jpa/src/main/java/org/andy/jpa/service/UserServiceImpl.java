@@ -1,7 +1,7 @@
 package org.andy.jpa.service;
 
 import org.andy.jpa.dao.UserRepository;
-import org.andy.jpa.domain.User;
+import org.andy.jpa.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

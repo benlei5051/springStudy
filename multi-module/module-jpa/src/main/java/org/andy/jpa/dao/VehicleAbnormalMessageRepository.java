@@ -1,8 +1,6 @@
 package org.andy.jpa.dao;
 
-import org.andy.jpa.domain.User;
-import org.andy.jpa.domain.VehicleAbnormalMessage;
-import org.springframework.data.jpa.domain.Specification;
+import org.andy.jpa.entity.VehicleAbnormalMessage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
