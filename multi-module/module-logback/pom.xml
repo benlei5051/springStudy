@@ -16,6 +16,7 @@
         <module>logback-sample1</module>
         <module>logback-sample2</module>
         <module>logback-sample3</module>
+        <module>logback-sample4</module>
     </modules>
     <dependencies>
         <dependency>
