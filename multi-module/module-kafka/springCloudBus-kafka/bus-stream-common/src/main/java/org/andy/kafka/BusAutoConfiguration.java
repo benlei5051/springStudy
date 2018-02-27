@@ -27,6 +27,7 @@ import java.util.Map;
 @ConditionalOnBusEnabled
 @PropertySource("classpath:/config-kafka.properties")
 @RemoteApplicationEventScan("org.andy.kafka.event")
+
 public class BusAutoConfiguration implements ImportAware {
 
     @Autowired
@@ -65,4 +66,5 @@ public class BusAutoConfiguration implements ImportAware {
         }
 
     }
+    //上面流程大概是实现了ImportAware接口，也就是注解被解析完之后的一个回调，然后通过这个回调拿到具体的参数而已
 }

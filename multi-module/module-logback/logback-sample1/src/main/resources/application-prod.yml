@@ -1,0 +1,4 @@
+#用这个配置项可以自定义日志的文件名
+#spring-boot:run -Dspring.profiles.active=prod
+logging:
+  config: classpath:fileAppender/logback.xml
