@@ -11,7 +11,7 @@
     </appender>
 
     <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>mylog.txt</file>
+        <file>d:/mylog.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- rollover daily -->
             <!--Each time the current log file reaches maxFileSize before the current time period ends,
