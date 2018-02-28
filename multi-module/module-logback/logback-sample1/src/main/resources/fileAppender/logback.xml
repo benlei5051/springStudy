@@ -22,7 +22,7 @@
         </encoder>
     </appender>
 <!--additivity false时，org.andy.logback.service包下的日志只会在file中，而不会在STDOUT中-->
-    <logger name="org.andy.logback.sample1.service.entity" level="INFO" additivity="false">
+    <logger name="org.andy.logback.sample5.service.entity" level="INFO" additivity="false">
         <appender-ref ref="FILE"/>
     </logger>
 

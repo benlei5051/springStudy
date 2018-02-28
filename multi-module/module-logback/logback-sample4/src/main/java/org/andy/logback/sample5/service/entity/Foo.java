@@ -1,4 +1,4 @@
-package org.andy.logback.sample1.service.entity;
+package org.andy.logback.sample5.service.entity;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

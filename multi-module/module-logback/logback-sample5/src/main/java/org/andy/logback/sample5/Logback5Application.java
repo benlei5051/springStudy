@@ -1,4 +1,4 @@
-package org.andy.logback.sample1;
+package org.andy.logback.sample5;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,11 +11,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Description:
  */
 @SpringBootApplication
-public class Logback1Application {
-    private static final Logger logger = LoggerFactory.getLogger(Logback1Application.class);
+public class Logback5Application {
+    private static final Logger logger = LoggerFactory.getLogger(Logback5Application.class);
 
     public static void main(String[] args) {
-        SpringApplication.run(Logback1Application.class, args);
+        SpringApplication.run(Logback5Application.class, args);
         logger.trace("======trace");
         logger.debug("======debug");
         logger.info("======info");
