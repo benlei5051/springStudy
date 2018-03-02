@@ -63,6 +63,7 @@ public class FileUploadController {
      * @return
      */
     @GetMapping("/files/{filename:.+}")
+//    @PostMapping(path = "/exportVehicleAttendanceStatica", produces = "application/vnd.ms-excel")
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
 
