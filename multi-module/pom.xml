@@ -21,6 +21,7 @@
         <module>module-beans</module>
         <module>module-kafka</module>
         <module>module-logback</module>
+        <module>module-springCloud</module>
     </modules>
 
     <properties>
