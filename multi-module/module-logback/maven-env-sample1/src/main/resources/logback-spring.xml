@@ -1,0 +1,41 @@
+<!--要引用springProfile标签，文件必须命名为logback-spring.xml-->
+<configuration scan="true" scanPeriod="10 seconds">
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <property name="log_patternlayout"
+              value="${FILE_LOG_PATTERN:-%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%msg%n}"/>
+    <!-- Insert the current time formatted as "yyyyMMdd'T'HHmmss" under
+          the key "bySecond" into the logger context. This value will be
+          available to all subsequent configuration elements. -->
+    <!--<timestamp key="bySecond" datePattern="yyyy-MM-dd HH-mm-ss"/>-->
+    <timestamp key="bySecond" datePattern="yyyy-MM-dd"/>
+    <property name="log_filename" value="${log.path}.log" />
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <!--appender 放在标签springProfile外，不管运行哪个环境，这个文件都会产生，只是文件内容为空
+   要想不产生文件，需将其放入标签springProfile内-->
+    <appender name="file" class="ch.qos.logback.core.FileAppender">
+        <!--<file>d:/log-${bySecond}.log</file>-->
+        <file>${log_filename}</file>
+        <append>true</append>  <!--默认是true-->
+        <encoder>
+            <!--<pattern>${log_patternlayout}</pattern>-->
+            <pattern>===%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger Line:%-3L - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="${log.root.level}">
+        <appender-ref ref="${log.appender}"/>
+    </root>
+
+    <logger name="org.andy.logback.sample2.service.entity" level="${log.level}" additivity="false">
+        <appender-ref ref="file"/>
+    </logger>
+
+
+</configuration>

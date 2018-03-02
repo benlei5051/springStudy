@@ -13,11 +13,10 @@
     <name>module-logback</name>
     <url>http://maven.apache.org</url>
     <modules>
-        <module>logback-sample1</module>
-        <module>logback-sample2</module>
-        <module>logback-sample3</module>
-        <module>logback-sample4</module>
-        <module>logback-sample5</module>
+        <module>maven-env-sample1</module>
+        <module>maven-env-sample2</module>
+        <module>spring-env-sample1</module>
+        <module>spring-env-sample2</module>
     </modules>
     <dependencies>
         <dependency>
@@ -25,4 +24,12 @@
             <artifactId>module-common</artifactId>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
