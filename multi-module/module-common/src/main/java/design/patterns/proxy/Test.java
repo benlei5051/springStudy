@@ -1,7 +1,5 @@
 package design.patterns.proxy;
 
-import design.patterns.decorator.Sourceable;
-
 /**
  * @author: andy
  * @Date: 2018/3/13 11:18

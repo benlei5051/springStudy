@@ -1,7 +1,6 @@
 package design.patterns.proxy;
 
 import design.patterns.adapter.classAdapter.Source;
-import design.patterns.decorator.Sourceable;
 
 /**
  * @author: andy

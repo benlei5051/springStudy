@@ -13,5 +13,13 @@ public class Test {
         driverManager.connect();
 
 
+        DriverManager driverManager2 = new MyDriverManager2();
+        Driver driver2 = new DB2Driver();
+        driverManager2.setDriver(driver2);
+        driverManager2.connect();
+
+
+
+
     }
 }

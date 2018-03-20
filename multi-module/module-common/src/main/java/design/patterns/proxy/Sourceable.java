@@ -1,4 +1,4 @@
-package design.patterns.decorator;
+package design.patterns.proxy;
 
 /**
  * @author: andy
