@@ -1,4 +1,4 @@
-package design.patterns.observer.util;
+package design.patterns.observer.example1;
 
 /**
  * @author: andy
