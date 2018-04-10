@@ -14,5 +14,6 @@
     <modules>
         <module>eureka</module>
         <module>consul</module>
+        <module>feign</module>
     </modules>
 </project>

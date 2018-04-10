@@ -13,8 +13,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @SpringBootApplication
 public class EurekaClientApplication {
     public static void main(String[] args) {
+        String[] args2 = new String[]{"--server.port=2001"};
         new SpringApplicationBuilder(
                 EurekaClientApplication.class)
-                .web(true).run(args);
+                .web(true).run(args2);
     }
 }

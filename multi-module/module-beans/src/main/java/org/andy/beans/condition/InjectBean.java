@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @InjectEnabled
 @Component
 public class InjectBean {
-    public void eat(){
+    public void eat() {
         System.out.println("今天吃什么");
     }
 }
