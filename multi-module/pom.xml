@@ -22,6 +22,8 @@
         <module>module-kafka</module>
         <module>module-logback</module>
         <module>module-springCloud</module>
+        <module>module-authority</module>
+        <module>module-oauth2</module>
     </modules>
 
     <properties>
