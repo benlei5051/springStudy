@@ -13,7 +13,10 @@
     <packaging>pom</packaging>
     <modules>
         <module>oauth2-role</module>
-        <module>oauth-token</module>
+        <module>oauth2-token</module>
+        <module>oauth2-security</module>
+        <module>oauth2-server</module>
+        <module>oauth2-client</module>
     </modules>
 
 
