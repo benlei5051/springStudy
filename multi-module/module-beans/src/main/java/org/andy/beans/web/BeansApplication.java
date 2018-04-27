@@ -16,6 +16,8 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 public class BeansApplication extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+
+
         logger.info("进入方法------------------------");
         return application.sources(BeansApplication.class);
     }
