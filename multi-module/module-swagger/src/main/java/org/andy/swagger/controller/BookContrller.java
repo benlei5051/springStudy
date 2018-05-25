@@ -4,7 +4,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.andy.swagger.annoation.CurrentUser;
 import org.andy.swagger.entity.Book;
+import org.andy.swagger.entity.DemoDto;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -91,5 +93,13 @@ public class BookContrller {
     @RequestMapping(value = "/hi", method = RequestMethod.GET)
     public String  jsonTest() {
         return " hi you!";
+    }
+
+    @ApiOperation(value="测试注解currentUser", notes="测试注解currentUser")
+    @RequestMapping(value="/current/id", method=RequestMethod.GET)
+    public DemoDto getBook(@CurrentUser DemoDto demoDto) {
+        //思路：可以设计一个拦截器实现implements HandlerInterceptor，将所有路径拦截，然后从请求头header中拿去token，根据token
+        //查询用户信息，然后将它放入redis中，以后所有的接口只要加上注解@currentUser,就可以直接取到用户的信息
+        return demoDto;
     }
 }
