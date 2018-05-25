@@ -15,6 +15,7 @@
     <modules>
         <module>springCloudBus-kafka</module>
         <module>springCloudStream-kafka</module>
+        <module>springboot-kafka</module>
     </modules>
 
     <properties>
