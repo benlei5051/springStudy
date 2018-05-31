@@ -24,6 +24,9 @@
             <artifactId>stream-common</artifactId>
         </dependency>
     </dependencies>
+    <!-- Package as an executable jar -->
+    <!--To create an executable jar, we need to add the spring-boot-maven-plugin to our pom.xml. To do so,
+    insert the following lines just below the dependencies section:-->
     <build>
         <plugins>
             <plugin>

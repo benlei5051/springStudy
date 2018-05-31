@@ -8,8 +8,8 @@
     <artifactId>multi-module</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <modules>
 
+    <modules>
         <module>module-common</module>
         <module>module-jpa</module>
         <module>module-hibernateValidator</module>
@@ -105,23 +105,6 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring.boot.version}</version>
-<!--热部署使用使用这个配置，一般配合
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-devtools</artifactId>
-                <optional>true</optional>
-            </dependency>使用
-如果你不想编译，可以指定监控目录一旦目录文件改变，就会触发重新加载
-然后在applicaiton.yml文件配置
-spring:
-  devtools:
-    restart:
-      additional-paths:
-        src/main/java/com/start
--->
-                    <!--<configuration>
-                        <fork>true</fork>
-                    </configuration>-->
                     <executions>
                         <execution>
                             <goals>

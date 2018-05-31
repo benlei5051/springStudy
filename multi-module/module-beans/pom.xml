@@ -22,6 +22,7 @@
             <groupId>org.andy</groupId>
             <artifactId>module-common</artifactId>
         </dependency>
+        <!-- 用于自动生成spring-configuration-metadata.json -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>

@@ -1,8 +1,10 @@
 package org.andy.authority.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.andy.authority.support.BaseEntity;
 import org.andy.authority.support.Sex;
@@ -34,6 +36,8 @@ import java.util.Set;
 @Table(name = "opt_user")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @DynamicUpdate
 @Builder
 @Where(clause = "del_flag = 0")
