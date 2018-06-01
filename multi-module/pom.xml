@@ -25,6 +25,7 @@
         <module>module-springCloud</module>
         <module>module-authority</module>
         <module>module-oauth2</module>
+        <module>module-db</module>
     </modules>
 
     <properties>

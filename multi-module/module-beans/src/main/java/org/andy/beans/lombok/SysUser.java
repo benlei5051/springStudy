@@ -3,6 +3,7 @@ package org.andy.beans.lombok;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 
@@ -25,6 +26,11 @@ import lombok.NoArgsConstructor;
  */
 
 
+/*关于lombok会导致ENTITY-FK调用陷入死循环的解决方案：
+        1. 使用@Getter @Setter @ToString代替@Data并且自定义equals(Object other) 和 hashCode()方法，比如有些类只需要判断主键id是否相等即足矣。
+        2. 或者使用在使用@Data时同时加上@EqualsAndHashCode(callSuper=true)注解。
+
+        这三个@Getter @Setter @ToString代替@Data，不会自动重写equals和hashcode*/
 @Data
 @Builder
 @AllArgsConstructor

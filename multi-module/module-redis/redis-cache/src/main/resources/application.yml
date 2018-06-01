@@ -1,7 +1,7 @@
 #redis(分片)
 spring:
   redis:
-    host: 10.11.103.234
+    host: localhost
     port: 6379
     password:                 # Redis服务器连接密码（默认为空）
     database: 0               # Redis数据库索引（默认为0） 用命令切换select 1
@@ -11,4 +11,3 @@ spring:
       max-idle: 500           # 连接池中的最大空闲连接
       min-idle: 0             # 连接池中的最小空闲连接
     timeout: 0
-

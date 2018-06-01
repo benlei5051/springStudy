@@ -1,0 +1,23 @@
+在visual code中打开，使用快捷键Ctrl+alt+R执行请求
+
+GET http://localhost:8080/book/show?isbn=isbn10&title=book10 http/1.1
+GET http://localhost:8080/book/isbn1 HTTP/1.1
+
+
+
+GET url HTTP/1.1
+
+
+GET http://localhost:8080/book/list/show http/1.1
+
+
+DELETE http://localhost:8080/book/isbn1 HTTP/1.1
+
+
+POST http://localhost:8080/book/save HTTP/1.1
+content-type: application/json;charset=utf-8
+
+{
+    "isbn":"isbn9",
+    "title":"book9"
+}

@@ -18,8 +18,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class SpringbootCacheApplication {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext applicationContext = SpringApplication.run(SpringbootCacheApplication.class, args);
-        AppRunner appRunner = (AppRunner) applicationContext.getBean("appRunner");
-        appRunner.test();
+        SpringApplication.run(SpringbootCacheApplication.class, args);
     }
 }
