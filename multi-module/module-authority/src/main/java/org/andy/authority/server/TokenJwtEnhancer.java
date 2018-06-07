@@ -1,6 +1,3 @@
-/**
- *
- */
 package org.andy.authority.server;
 
 import org.andy.authority.domain.User;

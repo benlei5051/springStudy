@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * @author: andy
@@ -21,6 +22,8 @@ public class BeansApplication extends SpringBootServletInitializer {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(BeansApplication.class, args);
+        ConfigurableApplicationContext run = SpringApplication.run(BeansApplication.class, args);
+        run.close();
+
     }
 }

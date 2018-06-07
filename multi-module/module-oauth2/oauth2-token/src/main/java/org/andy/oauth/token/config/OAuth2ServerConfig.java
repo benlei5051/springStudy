@@ -30,10 +30,10 @@ public class OAuth2ServerConfig {
     @EnableResourceServer
     protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
-        @Override
+      /*  @Override
         public void configure(ResourceServerSecurityConfigurer resources) {
             resources.resourceId(DEMO_RESOURCE_ID).stateless(true);
-        }
+        }*/
 
         @Override
         public void configure(HttpSecurity http) throws Exception {
@@ -70,13 +70,13 @@ public class OAuth2ServerConfig {
         public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
             //配置两个客户端,一个用于password认证一个用于client认证
             clients.inMemory().withClient("client_1")
-                    .resourceIds(DEMO_RESOURCE_ID)
+//                    .resourceIds(DEMO_RESOURCE_ID)
                     .authorizedGrantTypes("client_credentials", "refresh_token")
                     .scopes("select")
                     .authorities("client")
                     .secret("123456")
                     .and().withClient("client_2")
-                    .resourceIds(DEMO_RESOURCE_ID)
+//                    .resourceIds(DEMO_RESOURCE_ID)
                     .authorizedGrantTypes("password", "refresh_token")
                     .scopes("select")
                     .authorities("client")

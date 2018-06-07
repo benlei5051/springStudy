@@ -4,12 +4,18 @@ import org.andy.jpa.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 /**
  * Created by jh on 2017/8/12.
  */
+@RepositoryRestResource(path = "work")
 public interface UserRepository extends JpaRepository<User, Integer> {
 
+
+    @RestResource(path = "nameStartsWith", rel = "nameStartsWith")
+    User findByNameStartsWith(@Param("name") String name);
     /**
      * Find by name.
      *
