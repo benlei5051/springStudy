@@ -15,9 +15,8 @@
         <module>oauth2-role</module>
         <module>oauth2-token</module>
         <module>oauth2-security</module>
-        <module>oauth2-server</module>
-        <module>oauth2-client</module>
         <module>oauth2-example1</module>
+        <module>oauth2-example2</module>
     </modules>
 
 

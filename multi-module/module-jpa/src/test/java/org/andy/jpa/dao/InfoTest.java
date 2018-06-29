@@ -3,12 +3,14 @@ package org.andy.jpa.dao;
 import com.sun.org.apache.xml.internal.security.encryption.Transforms;
 import org.andy.jpa.entity.Info;
 import org.andy.jpa.entity.InfoModel;
+import org.andy.jpa.entity.User;
 import org.hibernate.SQLQuery;
 import org.hibernate.transform.Transformers;
 import org.hibernate.type.StringType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -27,13 +29,16 @@ import java.util.Map;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Transactional
+//@Transactional
 public class InfoTest {
     @Autowired
     public EntityManager entityManager;
 
     @Autowired
     public InfoRepository infoRepository;
+
+    @Autowired
+    public UserRepository userRepository;
 
     @Test
     @Rollback(false)
@@ -81,6 +86,13 @@ public class InfoTest {
         Query nativeQuery = this.entityManager.createNativeQuery("select msg,title from info");
         List<InfoModel> list = (List<InfoModel>)nativeQuery.unwrap(SQLQuery.class).addScalar("msg", StringType.INSTANCE).addScalar("title", StringType.INSTANCE).setResultTransformer(Transformers.aliasToBean(InfoModel.class)).list();
         System.out.println(list.get(0).getTitle());
+    }
+    @Test
+    public void testSecuUser(){
+        User user = new User();
+        user.setId(222);
+        user.setDelete(true);
+        userRepository.save(user);
     }
 
 }

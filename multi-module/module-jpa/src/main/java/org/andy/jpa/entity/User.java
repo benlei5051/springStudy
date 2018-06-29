@@ -51,6 +51,9 @@ public class User {
     @Column(name = "is_ldap")
     private Integer isLdap;
 
+    @Column(name = "is_delete")
+    private Boolean isDelete;
+
     public String getName() {
         return name;
     }
@@ -186,5 +189,13 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Boolean getDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(Boolean delete) {
+        isDelete = delete;
     }
 }

@@ -4,10 +4,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.annotation.PostConstruct;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Slf4j
 public class JsonUtils {
@@ -15,6 +20,24 @@ public class JsonUtils {
     private static final String PATTERN = "yyyy-MM-dd HH:mm:s";
 
     private static final ObjectMapper objectMapper;
+
+
+
+   /* private static final ObjectMapper MAPPER = new ObjectMapper();
+
+
+    @PostConstruct
+    private void init() {
+
+        MAPPER.registerModule(new SimpleModule().addSerializer(new NullValueSerializer("type")));
+
+        MAPPER.enableDefaultTypingAsProperty(ObjectMapper.DefaultTyping.NON_FINAL, "type");
+
+    }*/
+
+
+
+
 
     static {
         objectMapper = new ObjectMapper();
