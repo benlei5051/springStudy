@@ -1,3 +1,5 @@
+import org.apache.commons.lang3.StringUtils;
+
 import java.text.NumberFormat;
 
 /**
@@ -7,13 +9,15 @@ import java.text.NumberFormat;
  */
 public class Test {
     public static void main(String[] args) {
-        int youNumber = 1;
+        System.out.println(011);
+        System.out.println(Integer.toHexString(021));
+        /*int youNumber = 1;
         // 0 代表前面补充0
         // 4 代表长度为4
         // d 代表参数为正数型
         String str = String.format("%02d", youNumber);
         System.out.println(formatTime(800));
-        System.out.println(str); // 0001
+        System.out.println(str); // 0001*/
     }
 
     public static void fun1(Integer second) {

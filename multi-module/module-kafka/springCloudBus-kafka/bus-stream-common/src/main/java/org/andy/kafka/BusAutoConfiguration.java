@@ -5,7 +5,9 @@ import org.springframework.cloud.bus.ConditionalOnBusEnabled;
 import org.springframework.cloud.bus.SpringCloudBusClient;
 import org.springframework.cloud.bus.jackson.RemoteApplicationEventScan;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.ImportAware;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -23,11 +25,37 @@ import java.util.Map;
  * 基于 springCloudBus上实现自己的Event,
  * 手动Import
  */
+
+/*
+
+@Configuration
+@ComponentScan(basePackages = "com.cmdt.carday.microservice.common.global",
+        excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX,
+                pattern = "com\\.cmdt\\.carday\\.microservice\\.common\\.global\\.optional\\..+"))
+@PropertySource(value = {"classpath:/postgres.properties",
+        "classpath:/environment.properties",
+        "classpath:/redis.properties",
+        "classpath:/common-service-url.properties"
+}, ignoreResourceNotFound = true)
+
+*/
+
+/**
+ * 如果项目中引用了一些第三方的类库，如我用到的Redisson库，其内部包含很多@Configuration注解的配置类，
+ * 但是我的项目没有自动扫描他的包，那么就可以用@Import(XXX.class)来导入其配置类使其生效。
+ * 在Spring4.2以后，@Import还支持导入普通的没有@Configuration注解的类，并将其实例化加入IOC容器中。
+ *
+ *
+ * @import  和 importAware搭配使用，配置类BusAutoConfiguration实现了ImportAware，因此
+ * setImportMetadata方法可以通过其importMetadata拿到了@EnableCardayBus注解上的参数
+ *
+ * 这样就实现了通过注解参数来对配置类BusAutoConfiguration作设置的功能
+ */
+
 @Configuration
 @ConditionalOnBusEnabled
 @PropertySource("classpath:/config-kafka.properties")
 @RemoteApplicationEventScan("org.andy.kafka.event")
-
 public class BusAutoConfiguration implements ImportAware {
 
     @Autowired

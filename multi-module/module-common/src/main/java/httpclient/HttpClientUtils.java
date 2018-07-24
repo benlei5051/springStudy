@@ -1,4 +1,4 @@
-package org.andy.beans.restTemplate;
+package httpclient;
 
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;

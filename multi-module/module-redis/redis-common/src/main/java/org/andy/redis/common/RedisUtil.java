@@ -3,17 +3,25 @@ package org.andy.redis.common;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ScanOptions;
+import org.springframework.data.redis.core.SessionCallback;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.Transaction;
+import redis.clients.jedis.exceptions.JedisException;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -303,4 +311,115 @@ public class RedisUtil {
 
         return redisTemplate.keys(keyPattern);
     }
+
+    /**
+     * redis事务控制
+     * @return
+     */
+    public Object testRedisMulti() {
+
+        Object o = redisTemplate.execute(new SessionCallback() {
+            @Override
+            public Object execute(RedisOperations operations) throws DataAccessException {
+                //   operations.watch("testRedisMulti");
+                operations.multi();
+                operations.opsForValue().set("testRedisMulti", "0");
+                String now = (String) operations.opsForValue().get("testRedisMulti");
+                System.out.println(now);
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                now = (String) operations.opsForValue().get("testRedisMulti");
+                System.out.println(now);
+                Object rs = operations.exec();
+                return rs;
+            }
+        });
+
+        System.out.println(o);
+
+        return o;
+    }
+
+
+
+    /**
+     * 加锁
+     * @param locaName  锁的key
+     * @param acquireTimeout  获取超时时间
+     * @param timeout   锁的超时时间
+     * @return 锁标识
+     */
+    public String lockWithTimeout(String locaName,
+                                  long acquireTimeout, long timeout) {
+        ValueOperations oper = redisTemplate.opsForValue();
+        String retIdentifier = null;
+        try {
+            // 随机生成一个value
+            String identifier = UUID.randomUUID().toString();
+            // 锁名，即key值
+            String lockKey = "lock:" + locaName;
+            // 超时时间，上锁后超过此时间则自动释放锁
+            int lockExpire = (int)(timeout / 1000);
+
+            // 获取锁的超时时间，超过这个时间则放弃获取锁
+            long end = System.currentTimeMillis() + acquireTimeout;
+            while (System.currentTimeMillis() < end) {
+                if (oper.setIfAbsent(lockKey, identifier)) {
+                    redisTemplate.expire(lockKey, lockExpire,TimeUnit.SECONDS);
+                    // 返回value值，用于释放锁时间确认
+                    retIdentifier = identifier;
+                    return retIdentifier;
+                }
+                // 返回-1代表key没有设置超时时间，为key设置一个超时时间
+                if (redisTemplate.getExpire(lockKey) == -1) {
+                    redisTemplate.expire(lockKey, lockExpire,TimeUnit.SECONDS);
+                }
+
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return retIdentifier;
+    }
+
+    /**
+     * 释放锁
+     * @param lockName 锁的key
+     * @param identifier    释放锁的标识
+     * @returnF
+     */
+   /* public boolean releaseLock(String lockName, String identifier) {
+        String lockKey = "lock:" + lockName;
+        boolean retFlag = false;
+        ValueOperations oper = redisTemplate.opsForValue();
+        try {
+            while (true) {
+                // 监视lock，准备开始事务
+                redisTemplate.watch(lockKey);
+                // 通过前面返回的value值判断是不是该锁，若是该锁，则删除，释放锁
+                if (identifier.equals(oper.get(lockKey))) {
+                    Transaction transaction = redisTemplate.multi();
+                    transaction.del(lockKey);
+                    List<Object> results = transaction.exec();
+                    if (results == null) {
+                        continue;
+                    }
+                    retFlag = true;
+                }
+                redisTemplate.unwatch();
+                break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return retFlag;
+    }*/
 }
