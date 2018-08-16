@@ -98,7 +98,7 @@ public class BookContrller {
     @ApiOperation(value="测试注解currentUser", notes="测试注解currentUser")
     @RequestMapping(value="/current/id", method=RequestMethod.GET)
     public DemoDto getBook(@CurrentUser("test") DemoDto demoDto) {
-        //思路：可以设计一个拦截器实现implements HandlerInterceptor，将所有路径拦截，然后从请求头header中拿去token，根据token
+        //思路：可以设计一个拦截器实现implements HandlerInterceptor，将所有路径拦截，然后从请求头header中拿token，根据token
         //查询用户信息，然后将它放入redis中，以后所有的接口只要加上注解@currentUser,就可以直接取到用户的信息
         return demoDto;
     }

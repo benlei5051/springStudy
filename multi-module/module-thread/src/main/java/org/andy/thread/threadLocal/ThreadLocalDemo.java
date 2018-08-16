@@ -33,7 +33,16 @@ public class ThreadLocalDemo {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        final ThreadLocalDemo test = new ThreadLocalDemo();
+        MyRunnable myRunnable = new MyRunnable();
+        myRunnable.setThreadLocal("andy");
+        Thread thread1 = new Thread(myRunnable);
+        Thread thread2 = new Thread(myRunnable);
+        thread1.start();
+        thread2.start();
+
+
+
+       /* final ThreadLocalDemo test = new ThreadLocalDemo();
 
         test.set();//如果没有先set，程序会直接报错
         System.out.println(test.getLong());
@@ -55,6 +64,6 @@ public class ThreadLocalDemo {
 //        System.out.println(test.getLong());
         System.out.println(ThreadLocalDemo.longLocal.get());
         System.out.println(ThreadLocalDemo.stringLocal.get());
-//        System.out.println(test.getString());
+//        System.out.println(test.getString());*/
     }
 }

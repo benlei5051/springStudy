@@ -396,19 +396,20 @@ public class RedisUtil {
      * @param identifier    释放锁的标识
      * @returnF
      */
-   /* public boolean releaseLock(String lockName, String identifier) {
+    public boolean releaseLock(String lockName, String identifier) {
         String lockKey = "lock:" + lockName;
         boolean retFlag = false;
         ValueOperations oper = redisTemplate.opsForValue();
         try {
             while (true) {
+                redisTemplate.setEnableTransactionSupport(true);
                 // 监视lock，准备开始事务
                 redisTemplate.watch(lockKey);
                 // 通过前面返回的value值判断是不是该锁，若是该锁，则删除，释放锁
                 if (identifier.equals(oper.get(lockKey))) {
-                    Transaction transaction = redisTemplate.multi();
-                    transaction.del(lockKey);
-                    List<Object> results = transaction.exec();
+                    redisTemplate.multi();
+                    redisTemplate.delete(lockKey);
+                    List<Object> results = redisTemplate.exec();
                     if (results == null) {
                         continue;
                     }
@@ -421,5 +422,5 @@ public class RedisUtil {
             e.printStackTrace();
         }
         return retFlag;
-    }*/
+    }
 }

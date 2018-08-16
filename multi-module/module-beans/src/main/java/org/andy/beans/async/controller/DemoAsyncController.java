@@ -30,13 +30,13 @@ public class DemoAsyncController {
             Future<String> task2 = demoAsyncService.doTaskTwo();
             Future<String> task3 = demoAsyncService.doTaskThree();
             System.out.println("main先执行--------");
-            while (true) {
+            /*while (true) {
                 if (task1.isDone() && task2.isDone() && task3.isDone()) {
                     // 三个任务都调用完成，退出循环等待，如果没有这个条件限制，主线程执行完，子线程并不会停止
                     break;
                 }
                 Thread.sleep(1000);
-            }
+            }*/
             long end = System.currentTimeMillis();
 
             System.out.println("任务全部完成，总耗时：" + (end - start) + "毫秒");
