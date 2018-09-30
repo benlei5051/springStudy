@@ -12,11 +12,10 @@
     <artifactId>module-oauth2</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>oauth2-role</module>
         <module>oauth2-token</module>
         <module>oauth2-security</module>
-        <module>oauth2-example1</module>
         <module>oauth2-example2</module>
+        <module>oauth2-example</module>
     </modules>
 
 

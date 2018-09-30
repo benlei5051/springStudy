@@ -1,8 +1,8 @@
 server:
   port: 8081
 #  要用maven替换不再使用${},而是使用@..@代替
-app:
-  name: @log.test@
+#app:
+#  name: @log.test@
 
 #引用该文件下其他变量还是使用${}
 spring:
@@ -10,4 +10,3 @@ spring:
     name: maven-env-sample1
   jmx:
     default-domain: ${spring.application.name}
-

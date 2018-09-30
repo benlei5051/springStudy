@@ -18,6 +18,7 @@ public class TestEndpoints {
         return "product id : " + id;
     }
 
+    //http://localhost:8080/order/1?access_token=28543416-73c9-4051-8cce-febd8d3cafd9
     @GetMapping("/order/{id}")
     public String getOrder(@PathVariable String id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

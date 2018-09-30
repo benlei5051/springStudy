@@ -23,7 +23,9 @@ public class Foo {
     public void doIt() {
         logger.trace("Did it again!------trace");
         logger.debug("Did it again!------debug");
-        logger.info("Did it again!------info");
+        if (logger.isInfoEnabled()) {
+            logger.info("Did it again!------info");
+        }
         logger.warn("Did it again!-------warn");
         logger.error("Did it again!------error");
     }

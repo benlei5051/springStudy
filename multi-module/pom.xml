@@ -26,7 +26,6 @@
         <module>module-authority</module>
         <module>module-oauth2</module>
         <module>module-db</module>
-        <module>module-redis-jpa-cache</module>
         <module>module-feign</module>
         <module>module-message-template</module>
         <module>module-mybatis</module>

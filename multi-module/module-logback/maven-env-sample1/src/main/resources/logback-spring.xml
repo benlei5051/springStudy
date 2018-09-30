@@ -29,13 +29,16 @@
         </encoder>
     </appender>
 
+    <!--<logger name="org.andy.logback.sample2.service.entity" level="DEBUG"/>-->
+    <logger name="org.andy.logback.sample2.service.entity" level="WARN"/>
+
     <root level="${log.root.level}">
         <appender-ref ref="${log.appender}"/>
     </root>
 
-    <logger name="org.andy.logback.sample2.service.entity" level="${log.level}" additivity="false">
+   <!-- <logger name="org.andy.logback.sample2.service.entity" level="${log.level}" additivity="false">
         <appender-ref ref="file"/>
-    </logger>
+    </logger>-->
 
 
 </configuration>

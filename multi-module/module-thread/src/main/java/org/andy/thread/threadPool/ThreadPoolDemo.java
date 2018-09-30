@@ -1,5 +1,7 @@
 package org.andy.thread.threadPool;
 
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
 import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletionService;
@@ -7,6 +9,10 @@ import java.util.concurrent.ExecutorCompletionService;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * newSingleThreadExecutor：创建一个单线程的线程池。这个线程池只有一个线程在工作，也就是相当于单线程串行执行所有任务。如果这个唯一的线程因为异常结束，那么会有一个新的线程来替代它。此线程池保证所有任务的执行顺序按照任务的提交顺序执行。
@@ -23,27 +29,41 @@ import java.util.concurrent.Future;
 public class ThreadPoolDemo {
 
     public static void main(String[] args)throws Exception {
-     //   testSingleFutureAndCallable();
-        testMultFutureAndCallable();
+        testSingleFutureAndCallable();
+//        testMultFutureAndCallable();
     }
 
     /**
      *测试只有一个线程一个任务的Future
      */
     public static void testSingleFutureAndCallable()throws Exception{
-        ExecutorService service = Executors.newSingleThreadExecutor();
+        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
+                .setNameFormat("demo-pool-%d").build();
 
-        Future<String> future = service.submit(new Callable<String>(){
-            @Override
-            public String call() throws Exception {
-                Thread.sleep(3000);
-                return "Hello";
-            }
+        //Common Thread Pool
+        ExecutorService pool = new ThreadPoolExecutor(5, 200,
+                0L, TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
+
+//        pool.submit(()-> System.out.println(Thread.currentThread().getName()));
+//        pool.shutdown();//gracefully shutdown
+
+        for (int i = 0; i < 5; i++) {
+            pool.submit(()-> System.out.println(Thread.currentThread().getName()));
+        }
+        pool.shutdown();
+
+
+        /*ExecutorService service = Executors.newSingleThreadExecutor();
+
+        Future<String> future = service.submit(() -> {
+            Thread.sleep(3000);
+            return "Hello";
         });
 
         System.out.println("等待拿到结果：");
         System.out.println(future.get());
-        service.shutdown();
+        service.shutdown();*/
 
     }
     /**

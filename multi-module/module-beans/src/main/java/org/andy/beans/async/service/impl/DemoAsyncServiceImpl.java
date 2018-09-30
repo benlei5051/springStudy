@@ -1,6 +1,8 @@
 package org.andy.beans.async.service.impl;
 
 import org.andy.beans.async.service.DemoAsyncService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
@@ -10,12 +12,13 @@ import java.util.concurrent.Future;
 
 @Service
 public class DemoAsyncServiceImpl implements DemoAsyncService {
+    private static  final Logger logger = LoggerFactory.getLogger(DemoAsyncServiceImpl.class);
 
 	public static Random random =new Random();
 
     @Async
     public Future<String> doTaskOne() throws Exception {
-        System.out.println("开始做任务一");
+        logger.info("开始做任务一");
         long start = System.currentTimeMillis();
         for(int i=0;i<1000;i++){
             System.out.println(i);
@@ -28,7 +31,7 @@ public class DemoAsyncServiceImpl implements DemoAsyncService {
 
     @Async
     public Future<String> doTaskTwo() throws Exception {
-        System.out.println("开始做任务二");
+        logger.info("开始做任务二");
         long start = System.currentTimeMillis();
   //      Thread.sleep(random.nextInt(10000));
         long end = System.currentTimeMillis();
@@ -38,7 +41,7 @@ public class DemoAsyncServiceImpl implements DemoAsyncService {
 
     @Async
     public Future<String> doTaskThree() throws Exception {
-        System.out.println("开始做任务三");
+        logger.info("开始做任务三");
         long start = System.currentTimeMillis();
    //     Thread.sleep(random.nextInt(10000));
         long end = System.currentTimeMillis();

@@ -17,6 +17,8 @@ package org.andy.mybatis.sample.mapper;
 
 import org.andy.mybatis.sample.domain.Hotel;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * @author Eduardo Macarron
@@ -24,6 +26,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface HotelMapper {
 
-	Hotel selectByCityId(int city_id);
+	@Select("select * from hotel where city = #{cityId}")
+	Hotel selectByCityId(@Param("cityId") int city_id);
 
 }

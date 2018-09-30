@@ -42,6 +42,7 @@ public class BookRepositoryImpl implements BookRepository {
     }*/
 
 
+    @Override
     @Cacheable(value = "mysql:findById:book", keyGenerator = "simpleKey")
     public Book getByIsbn(String isbn) {
 
@@ -54,6 +55,7 @@ public class BookRepositoryImpl implements BookRepository {
 
 //当调用delete方法后，map的个数为减少一个对象变为7个，但是现在调用这个方法，它优先从缓存中读取，还是有8个对象，
 //    故会造成逻辑数据错误，最好能将缓存注解删除
+    @Override
     @Cacheable(value = "bookCache",key = "'all'")
     public Map<String,Book> list() {
         return map;

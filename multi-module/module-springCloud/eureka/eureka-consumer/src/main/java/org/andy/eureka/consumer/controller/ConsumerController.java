@@ -11,6 +11,9 @@ import org.springframework.web.client.RestTemplate;
  * @Date: 2018/3/2 17:19
  * @Description:
  */
+
+
+
 @RestController
 public class ConsumerController {
     @Autowired

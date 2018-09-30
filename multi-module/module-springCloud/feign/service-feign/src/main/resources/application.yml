@@ -7,6 +7,7 @@ server:
 spring:
   application:
     name: service-feign
+#在D版本的Spring Cloud中，它没有默认打开。需要在配置文件中配置打开它，
 feign:
   hystrix:
     enabled: true

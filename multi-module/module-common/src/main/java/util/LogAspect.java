@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +38,30 @@ import java.util.concurrent.Executors;
 public class LogAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(LogAspect.class);
+
+
+
+ /*   1.execution (*com.wul.spring.aop.impl.AtithmeticCalculator.*(..))
+    匹配 ArithmeticCalculator 中声明的所有方法,
+    第一个 * 代表任意修饰符及任意返回值. 第二个 * 代表任意方法. .. 匹配任意数量的参数.
+            若目标类与接口与该切面在同一个包中, 可以省略包名.
+
+2.execution (public * ArithmeticCalculator.*(..))
+    匹配 ArithmeticCalculator 接口的所有公有方法.
+
+3.execution(* * , *()..)
+    第一个 *代表匹配任意修饰符及任意返回值, 第二个 * 代表任意类的对象,第三个 *代表任意方法,
+    参数列表中的.. 匹配任意数量的参数.
+
+4.在 AspectJ 中, 切入点表达式可以通过操作符 &&, ||, ! 结合起来.
+
+5.可以在通知方法中声明一个类型为 JoinPoint 的参数. 然后就能访问链接细节. 如方法名称和参数值.
+    public void beforeMethod(org.aspectj.lang.JoinPoint joinPoint)
+    方法名：String methodName = joinPoint.getSignature().getName();
+    参数值：List<Object> args = Arrays.asList(joinPoint.getArgs());*/
+
+
+
 
     // 缓存线程池
     private ExecutorService pool = Executors.newFixedThreadPool(10);
