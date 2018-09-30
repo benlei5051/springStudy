@@ -11,24 +11,18 @@
 
     <modules>
         <module>module-common</module>
-        <module>module-jpa</module>
-        <module>module-hibernateValidator</module>
         <module>module-redis</module>
-        <module>module-restdoc</module>
-        <module>module-swagger</module>
         <module>module-lambda</module>
-        <module>module-file</module>
         <module>module-thread</module>
         <module>module-beans</module>
         <module>module-kafka</module>
         <module>module-logback</module>
         <module>module-springCloud</module>
-        <module>module-authority</module>
         <module>module-oauth2</module>
         <module>module-db</module>
-        <module>module-feign</module>
         <module>module-message-template</module>
-        <module>module-mybatis</module>
+        <module>module-persistence</module>
+        <module>module-microservice</module>
     </modules>
 
     <properties>

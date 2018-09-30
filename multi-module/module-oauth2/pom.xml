@@ -16,6 +16,7 @@
         <module>oauth2-security</module>
         <module>oauth2-example2</module>
         <module>oauth2-example</module>
+        <module>oauth2-authority</module>
     </modules>
 
 
