@@ -7,7 +7,7 @@ package org.andy.beans.lombok;
  */
 public class TestDemo {
     public static void main(String[] args){
-        SysUser sysUser=SysUser.builder().id(10l).organizationId(200l).build();
+        SysUser sysUser=SysUser.builder().id(10L).organizationId(200L).build();
         System.out.println(sysUser.toString());
     }
 }

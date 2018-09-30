@@ -22,8 +22,7 @@ import org.springframework.web.client.RestTemplate;
 
 如果classpath中添加了eureka，则它们的作用是一样的。*/
 
-@EnableDiscoveryClient
-@EnableEurekaClient  //启动EnableEureka客户端
+//@EnableEurekaClient  //启动EnableEureka客户端
 @SpringBootApplication
 public class EurekaConsumerApplication {
 

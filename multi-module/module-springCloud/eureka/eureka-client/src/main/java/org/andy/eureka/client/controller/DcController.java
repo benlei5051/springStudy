@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DcController {
 
-    @Value("${server.port}")
+    @Value("${server.port:8080}")
     private String port;
 
     @Autowired
@@ -30,8 +30,7 @@ public class DcController {
     }
 
     @RequestMapping("/hi")
-    public String home(@RequestParam String name) {
-        return "hi "+name+",i am from port:" +port;
+    public String home(@RequestParam(value = "name", defaultValue = "forezp") String name) {
+        return "hi " + name + " ,i am from port:" + port;
     }
-
 }
