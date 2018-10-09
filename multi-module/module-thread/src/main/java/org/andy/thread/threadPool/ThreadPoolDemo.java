@@ -29,32 +29,16 @@ import java.util.concurrent.TimeUnit;
 public class ThreadPoolDemo {
 
     public static void main(String[] args)throws Exception {
-        testSingleFutureAndCallable();
+//        testSingleFutureAndCallable();
 //        testMultFutureAndCallable();
+        testSuggestPool();
     }
 
     /**
      *测试只有一个线程一个任务的Future
      */
     public static void testSingleFutureAndCallable()throws Exception{
-        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
-                .setNameFormat("demo-pool-%d").build();
-
-        //Common Thread Pool
-        ExecutorService pool = new ThreadPoolExecutor(5, 200,
-                0L, TimeUnit.MILLISECONDS,
-                new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
-
-//        pool.submit(()-> System.out.println(Thread.currentThread().getName()));
-//        pool.shutdown();//gracefully shutdown
-
-        for (int i = 0; i < 5; i++) {
-            pool.submit(()-> System.out.println(Thread.currentThread().getName()));
-        }
-        pool.shutdown();
-
-
-        /*ExecutorService service = Executors.newSingleThreadExecutor();
+        ExecutorService service = Executors.newSingleThreadExecutor();
 
         Future<String> future = service.submit(() -> {
             Thread.sleep(3000);
@@ -63,8 +47,22 @@ public class ThreadPoolDemo {
 
         System.out.println("等待拿到结果：");
         System.out.println(future.get());
-        service.shutdown();*/
+        service.shutdown();
 
+    }
+
+    public static void testSuggestPool() {
+        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
+                .setNameFormat("demo-pool-%d").build();
+
+        //Common Thread Pool
+        ExecutorService pool = new ThreadPoolExecutor(55, 200,
+                0L, TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
+        for (int i = 0; i < 5; i++) {
+            pool.submit(()-> System.out.println(Thread.currentThread().getName()));
+        }
+        pool.shutdown();
     }
     /**
      * 提交一组callable，谁先完成就拿谁的结果

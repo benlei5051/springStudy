@@ -5,6 +5,7 @@ import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * @author: andy
@@ -22,7 +23,7 @@ public class BASE64Encrypt {
         String encode = base64Encode(s.getBytes());
         System.out.println("转换后：" + encode);
 
-        System.out.println("解码后：" + new String(base64Decode(encode)));
+        System.out.println("解码后：" + new String(Objects.requireNonNull(base64Decode(encode))));
     }
 
     /**
@@ -34,7 +35,8 @@ public class BASE64Encrypt {
      */
 
     public static String binary(byte[] bytes, int radix) {
-        return new BigInteger(1, bytes).toString(radix);//这里的1代表正数
+        //这里的1代表正数
+        return new BigInteger(1, bytes).toString(radix);
     }
 
     /**
