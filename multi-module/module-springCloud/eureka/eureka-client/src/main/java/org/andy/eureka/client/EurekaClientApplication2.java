@@ -11,8 +11,9 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  * @Date: 2018/3/2 16:26
  * @Description:
  */
-@EnableEurekaClient
 @SpringBootApplication
+//enableEurekaClient注解可要可不要
+@EnableEurekaClient
 public class EurekaClientApplication2 {
     public static void main(String[] args) {
         String[] args2 = new String[]{"--server.port=8763"};
