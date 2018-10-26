@@ -11,7 +11,9 @@ public class waitNotifyDemo {
 
     public static void main(String[] args) {
         Thread1 thread1 = new Thread1();
+        thread1.setName("aaa");
         Thread2 thread2 = new Thread2();
+        thread2.setName("bbb");
 
         thread1.start();
 
@@ -20,7 +22,7 @@ public class waitNotifyDemo {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        System.out.println("主线程");
         thread2.start();
     }
 
@@ -29,6 +31,7 @@ public class waitNotifyDemo {
         public void run() {
             synchronized (object) {
                 try {
+                    System.out.println("-----------");
                     object.wait();
                 } catch (InterruptedException e) {
                 }
@@ -41,6 +44,7 @@ public class waitNotifyDemo {
         @Override
         public void run() {
             synchronized (object) {
+                System.out.println("---");
                 object.notify();
                 System.out.println("线程"+Thread.currentThread().getName()+"调用了object.notify()");
             }

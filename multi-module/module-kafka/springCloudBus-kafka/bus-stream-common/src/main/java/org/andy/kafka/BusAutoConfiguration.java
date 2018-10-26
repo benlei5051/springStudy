@@ -55,6 +55,7 @@ import java.util.Map;
 @Configuration
 @ConditionalOnBusEnabled
 @PropertySource("classpath:/config-kafka.properties")
+// tells spring cloud bus to scan for custom events in the current package and subpackages
 @RemoteApplicationEventScan("org.andy.kafka.event")
 public class BusAutoConfiguration implements ImportAware {
 

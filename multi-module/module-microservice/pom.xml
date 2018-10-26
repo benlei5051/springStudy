@@ -16,6 +16,7 @@
         <module>api-restdoc</module>
         <module>api-validator</module>
         <module>api-file</module>
+        <module>spring-retry</module>
     </modules>
 
     <properties>

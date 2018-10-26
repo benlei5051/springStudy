@@ -1,5 +1,7 @@
 package org.andy.date;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
@@ -14,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalField;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -24,9 +27,32 @@ import java.util.Locale;
  */
 public class Java8Tester {
     public static void main(String args[]) {
-        Java8Tester java8tester = new Java8Tester();
-        java8tester.testLocalDateTime();
-        java8tester.testZonedDateTime();
+//        Java8Tester java8tester = new Java8Tester();
+//        LocalDate localDate = LocalDate.now();
+//        System.out.println(localDate.format(DateTimeFormatter.ofPattern("yyyy-MM")));
+       System.out.println(getJasperNextMonth());
+//        java8tester.testLocalDateTime();
+//        java8tester.testZonedDateTime();
+    }
+    public static String getJasperNextMonth(){
+        Calendar calendar =Calendar.getInstance();
+        calendar.set(Calendar.MONTH,11);
+        calendar.set(Calendar.DAY_OF_MONTH,23);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        if ( day >= 27) {
+            calendar.add(Calendar.MONTH,1);
+        }
+        calendar.set(Calendar.DAY_OF_MONTH , 27);
+        return format(calendar.getTime(), "yyyy-MM-dd");
+    }
+    public static String format(Date date, String pattern) {
+        String returnValue = "";
+
+        if (date != null) {
+            SimpleDateFormat df = new SimpleDateFormat(pattern);
+            returnValue = df.format(date);
+        }
+        return (returnValue);
     }
 
     public void testLocalDateTime() {

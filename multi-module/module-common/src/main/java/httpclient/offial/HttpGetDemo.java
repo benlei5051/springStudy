@@ -14,6 +14,8 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
+import java.io.InputStream;
+
 public class HttpGetDemo {
     public static void main(String[] args) throws Exception {
         // 1. 创建HttpClient对象
@@ -28,6 +30,16 @@ public class HttpGetDemo {
                 HttpEntity entity = response1.getEntity();
                 // 5. 处理响应实体
                 if (entity != null) {
+
+                  /*  //方式一释放资源
+                    InputStream is=entity.getContent();
+                    try {
+                        //dosomething
+                    }finally {
+                        //关闭entity的输入流
+                        is.close();
+                    }*/
+
                     System.out.println("长度：" + entity.getContentLength());
 //                   However, the use of EntityUtils is strongly discouraged unless the response entities originate from a trusted HTTP server and are known to be of limited length.
                     System.out.println("内容：" + EntityUtils.toString(entity));
