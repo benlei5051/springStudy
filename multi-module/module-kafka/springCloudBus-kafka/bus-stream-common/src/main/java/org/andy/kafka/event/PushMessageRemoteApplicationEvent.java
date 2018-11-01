@@ -10,12 +10,13 @@ public class PushMessageRemoteApplicationEvent<T extends PushMessage> extends Re
 
     private final T message;
 
- /*   @SuppressWarnings("unused")
-    //jackson序列化反序列化必须有无参构造函数
+    /**
+     * jackson序列化反序列化必须有无参构造函数
+     */
     private PushMessageRemoteApplicationEvent() {
-        // for serializers
         message = null;
-    }*/
+    }
+
     public PushMessageRemoteApplicationEvent(Object source, String originService,
                                              String destinationService, T message) {
         super(source, originService, destinationService);
