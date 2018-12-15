@@ -7,12 +7,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 @SpringBootApplication
 @EntityScan("org.andy.jpa.entity")
 @EnableJpaRepositories(basePackages = {"org.andy.jpa.dao"})
+@EnableJpaAuditing(auditorAwareRef = "auditorAware")
 public class SpringbootApplication extends SpringBootServletInitializer {
 //      private static final Logger LOGGER = LoggerFactory.getLogger(SpringbootApplication.class);
     @Override

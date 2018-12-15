@@ -21,6 +21,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.TYPE, ElementType.METHOD })
 public @interface InjectEnabled {
-    public static String INJECT_ENABLED = "inject.enabled";
+    String INJECT_ENABLED = "inject.enabled";
 }
 

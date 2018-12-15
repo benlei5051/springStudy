@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class HiController {
+
     @Autowired
-    SchedualServiceHi schedualServiceHi;
+    private SchedualServiceHi schedualServiceHi;
 
     /**
      * 访问路径: http://localhost:8765/hi?name=andy
@@ -25,7 +26,7 @@ public class HiController {
      */
     @GetMapping(value = "/hi")
     public String sayHi(@RequestParam String name) {
-        return schedualServiceHi.sayHiFromClientOne(name);
+       return schedualServiceHi.sayHiFromClientOne(name);
     }
 }
 

@@ -30,13 +30,13 @@ public class MyController {
         this.context = context;
     }
 
-    @Value("${foo}")
+    @Value("${foo:#{null}}")
     private String from;
 
     @Autowired
     private Environment env;
 
-//http://localhost:7001/from
+    //http://localhost:7001/from
     @RequestMapping("/from")
     public String from() {
         return this.from;
@@ -52,15 +52,14 @@ public class MyController {
     public String publish(@RequestParam(value = "destination", required = false, defaultValue = "**") String destination) {
         // each service instance must have a unique context ID
 
-        final String myUniqueId = context.getId();
-
+        final String myUniqueId = "config-client1:7002";
+        System.out.println(context.getId());
         final MyCustomRemoteEvent event =
-                new MyCustomRemoteEvent(this, myUniqueId, destination, "hello world");
+                new MyCustomRemoteEvent(this, myUniqueId, destination, "--------dfsfsdfsdfsdfs");
         //Since we extended RemoteApplicationEvent and we've configured the scanning of remote events using @RemoteApplicationEventScan, it will be treated as a bus event rather than just a regular ApplicationEvent published in the context.
         //因为我们在启动类上设置了@RemoteApplicationEventScan注解，所以通过context发送的时间将变成一个bus event总线事件，而不是在自身context中发布的一个ApplicationEvent
         context.publishEvent(event);
 
         return "event published";
     }
-
 }

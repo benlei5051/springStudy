@@ -42,7 +42,7 @@ public class DcController {
         logger.info("------------进入eureka-client服务---------------");
         //测试熔断超时
         try {
-            Thread.sleep(10000);
+            Thread.sleep(8000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

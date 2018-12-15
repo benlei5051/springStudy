@@ -12,6 +12,11 @@ public class ChickenBurger extends Humburger {
     }
 
     @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    @Override
     public double getPrice() {
         return 10;
     }

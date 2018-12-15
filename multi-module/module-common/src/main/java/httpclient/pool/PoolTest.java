@@ -246,7 +246,7 @@ public class PoolTest {
 
                 HttpGet httpget = new HttpGet(urisToGet[i]);
 
-                //未每一个http请求添加header信息
+                //为每一个http请求添加header信息
                 config(httpget);
 
                 //启动线程抓取

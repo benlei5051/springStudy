@@ -7,6 +7,7 @@ package design.patterns.decorator;
  */
 public abstract class Condiment extends Humburger {
 
+    @Override
     public abstract String getName();
 
 }

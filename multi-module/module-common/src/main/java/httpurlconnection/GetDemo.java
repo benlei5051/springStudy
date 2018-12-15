@@ -71,8 +71,18 @@ public class GetDemo {
                 while ((line = reader.readLine()) != null) { // 循环从流中读取
                     msg += line + "\n";
                 }
+                msg = StringEscapeUtils.unescapeJava(msg);
                 reader.close(); // 关闭流
-            }
+            } /*else {
+                BufferedReader br = new BufferedReader(new InputStreamReader(
+                        connection.getErrorStream(), "UTF-8"));
+                StringBuffer buffer = new StringBuffer();
+                String temp;
+                while ((temp = br.readLine()) != null) {
+                    buffer.append(temp);
+                    buffer.append("\n");
+                }
+            }*/
             // 6. 断开连接，释放资源
             connection.disconnect();
 

@@ -34,7 +34,7 @@ class MyThread implements Runnable {
 
 public class TicketsRunnable {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         MyThread mt = new MyThread();
         Thread th1 = new Thread(mt, "窗口1");
         Thread th2 = new Thread(mt, "窗口2");
@@ -43,6 +43,9 @@ public class TicketsRunnable {
         th2.start();
         th1.start();
         th3.start();
+        th1.join();
+        th2.join();
+        th3.join();
         System.out.println("---完成");
 
     }

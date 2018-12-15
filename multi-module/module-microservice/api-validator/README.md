@@ -1,3 +1,6 @@
+https://blog.csdn.net/gaojp008/article/details/80583301
+https://blog.csdn.net/zhenwei1994/article/details/81460419
+https://blog.csdn.net/danielzhou888/article/details/74740817
 ### hiberante validate 注解的使用
 
     @Null 只能是null
@@ -36,4 +39,98 @@
        @Digits(integer=1,fraction=1)
        @NotBlank(message="radius不能为空")
        private String radius; //半径
+       
+       
+       
+ 
+ 
+ 
+ public class User {
+ 	
+ 	private String userName;
+ 	
+ 	private String password;
+ 	
+ 	private String address;
+ 	
+ 	private String age;
+ 	
+ 	private String sex;
+ }      
+       
+  @GetMapping("/jsonview")// 需求：展示User里面的全部信息
+  	public User jsonDetailViewController(){
+  		User u = new User();
+  		u.setAddress("chongqing");
+  		u.setAge("25");
+  		u.setPassword("123456");
+  		u.setSex("nan");
+  		u.setUserName("chhliu");
+  		return u;
+  	}
+  	
+  	@GetMapping("/jsonviews")// 需求，只展示User里面的userName字段
+  	public User jsonSimpleViewController(){
+  		User u = new User();
+  		u.setAddress("chongqing");
+  		u.setAge("25");
+  		u.setPassword("123456");
+  		u.setSex("nan");
+  		u.setUserName("chhliu");
+  		return u;
+  	}
+  	
+  	
+public class User {
+	
+	public interface ServiceGroup1{};// 接口一：用于仅展示userName字段
+	
+	public interface ServiceGroup2 extends ServiceGroup1 {};// 接口二，继承自接口一，用于展示全部的字段
+	
+	@JsonView(ServiceGroup1.class)// 通过@JsonView+接口，来决定该字段在哪个业务里面展示
+	private String userName;
+	
+	@JsonView(ServiceGroup2.class)
+	private String password;
+	
+	@JsonView(ServiceGroup2.class)
+	private String address;
+	
+	@JsonView(ServiceGroup2.class)
+	private String age;
+	
+	@JsonView(ServiceGroup2.class)
+	private String sex;
+}
+
+@GetMapping("/jsonview")
+	@JsonView(User.ServiceGroup1.class)// 该controller里面展示的是ServiceGroup1标注的字段
+	public User jsonDetailViewController(){
+		User u = new User();
+		u.setAddress("chongqing");
+		u.setAge("25");
+		u.setPassword("123456");
+		u.setSex("nan");
+		u.setUserName("chhliu");
+		return u;
+	}
+	
+	@GetMapping("/jsonviews")// 该controller里面展示的是ServiceGroup2标注的字段
+	@JsonView(User.ServiceGroup2.class)
+	public User jsonSimpleViewController(){
+		User u = new User();
+		u.setAddress("chongqing");
+		u.setAge("25");
+		u.setPassword("123456");
+		u.setSex("nan");
+		u.setUserName("chhliu");
+		return u;
+	}
+测试结果
+{"userName":"chhliu"}
+{"userName":"chhliu","password":"123456","address":"chongqing","age":"25","sex":"nan"}
+
+
+       
+       
  

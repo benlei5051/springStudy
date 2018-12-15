@@ -13,21 +13,22 @@ import java.util.concurrent.TimeUnit;
  */
 public class TestScheduledThreadPoolExecutor {
     public static void main(String[] args) {
-        ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(1);
+        ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(2);
         exec.scheduleAtFixedRate(new Runnable() {//每隔一段时间
             @Override
             public void run() {
                 //throw new RuntimeException();
-                System.out.println(new Date());
+                System.out.println(Thread.currentThread().getName() + new Date());
             }
             //启动延迟多少秒，每隔多久执行一次
-        }, 1000, 5000, TimeUnit.MILLISECONDS);
+        }, 1000, 20000, TimeUnit.MILLISECONDS);
 
         exec.scheduleAtFixedRate(new Runnable() {//每隔一段时间打印系统时间，证明两者是互不影响的
             @Override
             public void run() {
-                System.out.println(new Date());
+                System.out.println(Thread.currentThread().getName() + new Date());
             }
-        }, 1000, 2000, TimeUnit.MILLISECONDS);
+        }, 1000, 50000, TimeUnit.MILLISECONDS);
+        exec.shutdown();
     }
 }

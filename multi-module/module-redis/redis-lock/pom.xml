@@ -15,6 +15,7 @@
         <module>lock-example1</module>
         <module>lock-example2</module>
         <module>lock-example3</module>
+        <module>lock-example4</module>
     </modules>
 
     <properties>

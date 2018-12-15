@@ -13,7 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>bus-kafka-client</module>
+        <module>bus-kafka-server</module>
+        <module>bus-eureka-server</module>
+        <module>bus-kafka-client3</module>
     </modules>
-
-
 </project>

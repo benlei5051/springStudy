@@ -30,7 +30,7 @@ interface CityRepository extends PagingAndSortingRepository<City, Long> {
 
 
 
-//请求路径 http://localhost:8081/api/cities/search/findByNameContainingAndCountryContainingAllIgnoringCase?name=Melbourne&country=Australia
+//请求路径 http://localhost:8081/api/cities/search/findByNameContainingAndCountryContainingAllIgnoringCase?name=Melbourne&country=Australia&page=0&size=3
 	Page<City> findByNameContainingAndCountryContainingAllIgnoringCase(
             @Param("name") String name, @Param("country") String country,
             Pageable pageable);

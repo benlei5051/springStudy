@@ -1,0 +1,12 @@
+#场景一：
+1、创建一个持续在随机间隔时间后从任务队列中获取任务的线程
+2、访问controller中的方法，创建一个DeferredResult，设定超时时间和超时返回对象
+3、设定DeferredResult的超时回调方法和完成回调方法
+4、将DeferredResult放入任务中，并将任务放入任务队列
+5、步骤1中的线程获取到任务队列中的任务，并产生一个随机结果返回 
+
+#场景二
+1、用户发送请求到TaskController的getResult方法，该方法接收到请求，创建一个DeferredResult，设定超时时间和超时返回对象
+2、设定DeferredResult的超时回调方法和完成回调方法，超时和完成都会将本次请求产生的DeferredResult从集合中remove
+3、将DeferredResult放入集合中
+4、另有一个TaskExecuteController，访问其中一个方法，可取出集合中的等待返回的DeferredResult对象，并将传入的参数设定为结果 

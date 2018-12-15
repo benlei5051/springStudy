@@ -1,61 +1,26 @@
-
 eureka:
   client:
     service-url:
       #注册中心集群地址
       defaultZone: http://localhost:8761/eureka/
+
+#config的配置必须配置到bootstap.yml文件中，因为该文件优先级最高，不会因为从git仓库中读取不到变量值而报错
 spring:
   cloud:
-    stream:
-      #指定用kafka stream来作为默认消息中间件
-      default-binder: kafka
-      kafka:
-        #来自KafkaBinderConfigurationProperties
-        binder:
-          brokers: localhost:9092
-          #如果需要传递自定义header信息，需要在此处声明，不然自定义消息头是不会出现在最终消息当中的
-          #          headers: myType
-#          configuration:
-#            auto:
-#              offset:
-#                #可以设置原生kafka属性，比如设置新的消费组从最新的offset开始消费
-#                reset: latest
     config:
-      profile: prod
-      #高可用配置中心通过服务Id去自动发现config-server服务组
+      profile: prod                           #对应配置服务中的{profile}
       discovery:
-        enabled: true
-        service-id: configServer
-      #使用svn配置时lable是trunk ,github lable是master
-      label: master
-      name: test
-      #允许失败快速响应
-      fail-fast: true
-      #允许拉取配置失败时重试，需要添加spring-retry和spirng-aop依赖,下面配置的都是和默认值一样
-      retry:
-        max-attempts: 6
-        initial-interval: 1000
-        multiplier: 1.1
-        max-interval: 2000
-    bus:
-      refresh:
-        enabled: true
-  profiles:
-    active: peer2
-server:
-  port: 7001
-
-#random_number: ${random.int(10)}
-random_number: ${random.uuid}
+        enabled: true                         #启用发现服务功能
+        service-id: bus-kafka-server          #指定服务名称
+      label: master                           #使用svn配置时lable是trunk ,github lable是master
+      name: test                              #对应的配置服务中的应用名称如test.properties
+      fail-fast: true                        #允许失败快速响应
 
 ---
 server:
   port: 7001
 spring:
   profiles: peer1
-  application:
-    name: bus-kafka-client7001
-    #用来唯一标识context id, bus会根据上下文id的唯一性来避免处理event的逻辑被重复执行两次
   cloud:
     stream:
       bindings:
@@ -63,22 +28,33 @@ spring:
         springCloudBusInput:
           destination: springCloudBus
           #可以指定消费组，避免每次生成随机group
-          group: ${spring.application.name}-${random_number}
-management:
-  endpoints:
-    web:
-      exposure:
-        include: bus-refresh
+          group: ${spring.application.name}-${random.int}
+      kafka:
+        binder:
+          brokers: localhost:9092
+          configuration:
+            auto:
+              offset:
+                #可以设置原生kafka属性，比如设置新的消费组从最新的offset开始消费
+                reset: latest
+    bus:
+      id: ${spring.application.name}:${server.port}
+  application:
+    name: config-client1
+
 ---
 server:
   port: 7002
 spring:
   profiles: peer2
-  application:
-    name: bus-kafka-client7002
   cloud:
     stream:
       bindings:
         springCloudBusInput:
           destination: springCloudBus
-          group: ${spring.application.name}-${random_number}
+          group: ${spring.application.name}-${random.int}
+    bus:
+      id: ${spring.application.name}:${server.port}
+  application:
+    name: config-client2
+

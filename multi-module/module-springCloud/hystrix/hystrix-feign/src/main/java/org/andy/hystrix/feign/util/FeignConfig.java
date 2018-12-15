@@ -32,7 +32,10 @@ public class FeignConfig {
 
     /**
      *
-     * 默认为 Retryer.NEVER_RETRY
+     * feign默认是不开启重试，如果要开启需配置new Retryer.Default(100, SECONDS.toMillis(1), 5)
+     *
+     * feign默认重试次数是5次，但不是默认开启重试
+     *
      * 更改了feignClient的重试次数，重试间隔为100ms，最大重试时间为1s,重试次数为5次
      * TimeUnit.SECONDS.toSeconds(1) 将1秒转为秒
      * TimeUnit.SECONDS.toMinutes(60) 将60秒转为分钟
@@ -71,6 +74,7 @@ public class FeignConfig {
 
     @Bean
     public Request.Options options() {
+        /*这个配置的优先级低于applicaiton文件中超时的配置*/
         return new Request.Options(connectTimeOutMillis, readTimeOutMillis);
     }
 

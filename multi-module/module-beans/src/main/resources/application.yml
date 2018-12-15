@@ -6,3 +6,9 @@ server:
 spring:
   profiles:
     active: dev
+  task:
+    pool:
+      corePoolSize: 1
+      maxPoolSize: 5
+      keepAliveSeconds: 1
+      queueCapacity: 1

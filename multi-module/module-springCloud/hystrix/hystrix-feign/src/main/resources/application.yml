@@ -7,6 +7,7 @@ server:
 spring:
   application:
     name: service-feign
+
 #  FeignClient的默认超时时间为10s，readtimeout 60s, 不会开启重试机制，需要自定义配置。
 feign:
   hystrix:
@@ -14,17 +15,20 @@ feign:
   client:
     config:
       default:                        #服务名，填写default为所有服务
-        connectTimeout: 12000        #请求连接的超时时间
-        readTimeout: 12000           #请求处理的超时时间
+        connectTimeout: 5000        #请求连接的超时时间
+        readTimeout: 5000           #请求处理的超时时间
         loggerLevel: FULL
         decode404: false
+
+#   熔断超时配置
 hystrix:
   command:
     default:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 150000
+            timeoutInMilliseconds: 10000
+
 logging:
   level:
     ROOT: INFO

@@ -19,6 +19,6 @@ public class MyCustomRemoteEventListener implements ApplicationListener<PushMess
 
     @Override
     public void onApplicationEvent(PushMessageRemoteApplicationEvent event) {
-        logger.info("Received MyCustomRemoteEvent - message: " + event.getMessage());
+        logger.info("Received MyCustomRemoteEvent - message: " + event.getMessage().getTitle() +"--------"+event.getMessage().getContent());
     }
 }

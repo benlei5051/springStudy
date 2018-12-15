@@ -1,8 +1,10 @@
 package org.andy.thread.threadPool;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import org.andy.thread.threadPool.sample.MyThread;
 
 import java.util.Random;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletionService;
 import java.util.concurrent.ExecutorCompletionService;
@@ -28,16 +30,17 @@ import java.util.concurrent.TimeUnit;
  */
 public class ThreadPoolDemo {
 
-    public static void main(String[] args)throws Exception {
+    public static void main(String[] args) throws Exception {
 //        testSingleFutureAndCallable();
 //        testMultFutureAndCallable();
-        testSuggestPool();
+//        testSuggestPool();
+        testPlainThreadPool();
     }
 
     /**
      *测试只有一个线程一个任务的Future
      */
-    public static void testSingleFutureAndCallable()throws Exception{
+    public static void testSingleFutureAndCallable() throws Exception {
         ExecutorService service = Executors.newSingleThreadExecutor();
 
         Future<String> future = service.submit(() -> {
@@ -60,39 +63,62 @@ public class ThreadPoolDemo {
                 0L, TimeUnit.MILLISECONDS,
                 new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
         for (int i = 0; i < 5; i++) {
-            pool.submit(()-> System.out.println(Thread.currentThread().getName()));
+            pool.submit(() -> System.out.println(Thread.currentThread().getName()));
         }
         pool.shutdown();
     }
+
     /**
      * 提交一组callable，谁先完成就拿谁的结果
      * @throws Exception
      */
-    public static void testMultFutureAndCallable()throws Exception{
+    public static void testMultFutureAndCallable() throws Exception {
         //新建了一个固定线程池
         ExecutorService service = Executors.newFixedThreadPool(10);
         //CompletionService 可以将已完成任务与未完成的任务分离出来 ExecutorCompletionService此类将安排那些完成时提交的任务，把它们放置在可使用 take 访问的队列上
         CompletionService<String> completionService = new ExecutorCompletionService<String>(service);
         //加入10个输出字符串的任务，并使每个任务随机停留时间在3秒内
-        for(int i=0;i<10;i++){
+        for (int i = 0; i < 10; i++) {
             final int num = i;
-            completionService.submit(new Callable<String>(){
+            completionService.submit(new Callable<String>() {
                 @Override
                 public String call() throws Exception {
                     Thread.sleep(new Random().nextInt(3000));
-                    return "hello"+num;
+                    return "hello" + num;
                 }
             });
         }
         //获取任务的结果
-        for(int j=0;j<10;j++){
+        for (int j = 0; j < 10; j++) {
 
-            Future<String> future =completionService.take();
+            Future<String> future = completionService.take();
             System.out.println(future.get());
         }
         //关闭线程池
         service.shutdown();
 
+    }
+
+    /**
+     * 线程池接收任务，直到corePoolSize数量，如果还有任务一直丢入队列中，因队列的大小是5，故可以放五个任务
+     * 当队列装满后，然后重新创建线程，直到maximumPoolSize，所以线程池一共创建了10个线程，并且还有五个在队列中，当任务数
+     *
+     * for (int i = 0; i < 20; i++)改为20时，程序直接报错，线程池拒绝任务
+     *
+     *
+     * keepAliveTime 当线程空闲超过200秒，就销毁线程
+     *
+     */
+    public static void testPlainThreadPool() {
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10, 200, TimeUnit.MILLISECONDS,
+                new ArrayBlockingQueue<Runnable>(5));
+        for (int i = 0; i < 15; i++) {
+            MyThread myTask = new MyThread(i);
+            executor.execute(myTask);
+            System.out.println("线程池中线程数目：" + executor.getPoolSize() + "，队列中等待执行的任务数目：" +
+                    executor.getQueue().size() + "，已执行完成的任务数目：" + executor.getCompletedTaskCount());
+        }
+//        executor.shutdown();
     }
 
 }

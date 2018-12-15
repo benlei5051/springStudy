@@ -21,6 +21,8 @@ public class MyCustomRemoteEventListener implements ApplicationListener<MyCustom
     //处理自定义事件
     @Override
     public void onApplicationEvent(MyCustomRemoteEvent myCustomRemoteEvent) {
+        System.out.println(myCustomRemoteEvent.getDestinationService()+"---------destin");
+        System.out.println(myCustomRemoteEvent.getOriginService()+"----------origin");
         logger.info("Received MyCustomRemoteEvent - message: " + myCustomRemoteEvent.getMessage());
     }
 }

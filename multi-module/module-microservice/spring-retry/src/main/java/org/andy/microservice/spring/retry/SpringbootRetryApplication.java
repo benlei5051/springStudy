@@ -25,6 +25,12 @@ public class SpringbootRetryApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpringbootRetryApplication.class, args);
     }
+
+
+    //https://blog.csdn.net/hulei19900322/article/details/78153310?reload
+
+
+
     @EventListener
     public void contextEvent(ContextRefreshedEvent contextEvent) throws InterruptedException {
         SpringbootRetryApplication demoApplication=contextEvent.getApplicationContext().getBean(SpringbootRetryApplication.class);

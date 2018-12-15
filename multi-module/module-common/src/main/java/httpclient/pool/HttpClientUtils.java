@@ -34,6 +34,7 @@ import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
 import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
@@ -58,9 +59,11 @@ import java.io.InterruptedIOException;
 import java.net.URI;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class HttpClientUtils {
@@ -389,6 +392,72 @@ public class HttpClientUtils {
         }
         return beanStr;
     }
+
+    /**
+     * 发送 http post 请求，支持文件上传
+     */
+    public static void httpPostFormMultipart(String url,Map<String,String> params, List<File> files,Map<String,String> headers,String encode){
+        if(encode == null){
+            encode = "utf-8";
+        }
+        CloseableHttpClient closeableHttpClient = HttpClients.createDefault();
+        HttpPost httpost = new HttpPost(url);
+
+        //设置header
+        if (headers != null && headers.size() > 0) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                httpost.setHeader(entry.getKey(),entry.getValue());
+            }
+        }
+        MultipartEntityBuilder mEntityBuilder = MultipartEntityBuilder.create();
+        mEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+        mEntityBuilder.setCharset(Charset.forName(encode));
+
+        // 普通参数//解决中文乱码
+        ContentType contentType = ContentType.create("text/plain",Charset.forName(encode));
+        if (params != null && params.size() > 0) {
+            Set<String> keySet = params.keySet();
+            for (String key : keySet) {
+                mEntityBuilder.addTextBody(key, params.get(key),contentType);
+            }
+        }
+        //二进制参数
+        if (files != null && files.size() > 0) {
+            for (File file : files) {
+                mEntityBuilder.addBinaryBody("file", file);
+            }
+        }
+        httpost.setEntity(mEntityBuilder.build());
+        String content;
+        CloseableHttpResponse  httpResponse = null;
+        try {
+            httpResponse = closeableHttpClient.execute(httpost);
+            HttpEntity entity = httpResponse.getEntity();
+            content = EntityUtils.toString(entity, encode);
+            httpResponse.getAllHeaders();
+            httpResponse.getStatusLine().getReasonPhrase();
+            httpResponse.getStatusLine().getStatusCode();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                httpResponse.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {  //关闭连接、释放资源
+            closeableHttpClient.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+
     /**
      * 文件上传
      */

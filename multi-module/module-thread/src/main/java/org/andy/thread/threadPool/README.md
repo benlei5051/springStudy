@@ -1,5 +1,7 @@
 https://blog.csdn.net/u010723709/article/details/50377543
 
+https://www.cnblogs.com/wihainan/p/4765862.html
+
 ThreadPoolExecutor
 先看看如何使用ThreadPoolExecutor创建线程池：
 
@@ -69,6 +71,65 @@ newCachedThreadPool
 此线程池不会对线程池大小做限制，线程池大小完全依赖于操作系统（或者说JVM）能够创建的最大线程大小。
 
 new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS,new SynchronousQueue<Runnable>());
+
+
+
+这里简单说明下，关于ThreadPoolTaskExecutor参数说明：
+
+corePoolSize：线程池维护线程的最少数量
+keepAliveSeconds：允许的空闲时间,当超过了核心线程出之外的线程在空闲时间到达之后会被销毁
+maxPoolSize：线程池维护线程的最大数量,只有在缓冲队列满了之后才会申请超过核心线程数的线程
+queueCapacity：缓存队列
+rejectedExecutionHandler：线程池对拒绝任务（无线程可用）的处理策略。这里采用了CallerRunsPolicy策略，当线程池没有处理能力的时候，
+该策略会直接在 execute 方法的调用线程中运行被拒绝的任务；如果执行程序已关闭，则会丢弃该任务。
+还有一个是AbortPolicy策略：处理程序遭到拒绝将抛出运行时RejectedExecutionException。
+而在一些场景下，若需要在关闭线程池时等待当前调度任务完成后才开始关闭，
+可以通过简单的配置，进行优雅的停机策略配置。
+关键就是通过setWaitForTasksToCompleteOnShutdown(true)和setAwaitTerminationSeconds方法。
+
+setWaitForTasksToCompleteOnShutdown:表明等待所有线程执行完，默认为false。
+setAwaitTerminationSeconds:等待的时间，因为不能无限的等待下去。
+所以，线程池完整配置为：
+@Bean(name = "asyncPoolTaskExecutor")
+public ThreadPoolTaskExecutor getAsyncThreadPoolTaskExecutor() {
+ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
+taskExecutor.setCorePoolSize(20);
+taskExecutor.setMaxPoolSize(200);
+taskExecutor.setQueueCapacity(25);
+taskExecutor.setKeepAliveSeconds(200);
+taskExecutor.setThreadNamePrefix("oKong-");
+// 线程池对拒绝任务（无线程可用）的处理策略，目前只支持AbortPolicy、CallerRunsPolicy；默认为后者
+//AbortPolicy:直接抛出java.util.concurrent.RejectedExecutionException异常 -->
+//CallerRunsPolicy:主线程直接执行该任务，执行完之后尝试添加下一个任务到线程池中，可以有效降低向线程池内添加任务的速度 -->
+//DiscardOldestPolicy:抛弃旧的任务、暂不支持；会导致被丢弃的任务无法再次被执行 -->
+//DiscardPolicy:抛弃当前任务、暂不支持；会导致被丢弃的任务无法再次被执行 -->
+
+建议大家用CallerRunsPolicy策略，因为当队列中的任务满了之后，如果直接抛异常，
+那么这个任务就会被丢弃，如果是CallerRunsPolicy策略会用主线程去执行，就是同步执行，
+最起码这样任务不会丢弃。
+
+
+taskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+//调度器shutdown被调用时等待当前被调度的任务完成
+taskExecutor.setWaitForTasksToCompleteOnShutdown(true);
+//等待时长
+taskExecutor.setAwaitTerminationSeconds(60);
+taskExecutor.initialize();
+return taskExecutor;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

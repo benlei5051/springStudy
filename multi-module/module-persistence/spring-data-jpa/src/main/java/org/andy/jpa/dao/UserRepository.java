@@ -1,6 +1,6 @@
 package org.andy.jpa.dao;
 
-import org.andy.jpa.entity.User;
+import org.andy.jpa.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,18 +11,18 @@ import org.springframework.data.rest.core.annotation.RestResource;
  * Created by jh on 2017/8/12.
  */
 @RepositoryRestResource(path = "work")
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<Users, Integer> {
 
 
     @RestResource(path = "nameStartsWith", rel = "nameStartsWith")
-    User findByNameStartsWith(@Param("name") String name);
+    Users findByNameStartsWith(@Param("name") String name);
     /**
      * Find by name.
      *
      * @param name the name
      * @return the user
      */
-    User findByName(String name);
+    Users findByName(String name);
 
     /**
      * Find by name and user name.
@@ -31,7 +31,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      * @param age the age
      * @return the user
      */
-    User findByNameAndUsername(String name, Integer age);
+    Users findByNameAndUsername(String name, Integer age);
 
     /**
      * Find user.
@@ -39,8 +39,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      * @param name the name
      * @return the user
      */
-    @Query("from User u where u.name=:name")
-    User findUser(@Param("name") String name);
+    @Query("from Users u where u.name=:name")
+    Users findUser(@Param("name") String name);
 
 /*    @Query("select install from DeviceInstallDevDetail devDetail " +
             "inner join devDetail.installNo install " +

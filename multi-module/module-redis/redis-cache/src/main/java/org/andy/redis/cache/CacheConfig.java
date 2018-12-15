@@ -70,7 +70,7 @@ public class CacheConfig extends CachingConfigurerSupport {
                 StringBuilder sb = new StringBuilder();
                 sb.append(target.getClass().getName()+":");
                 try {
-//                    当function(Book book)上标准@Cacheable时，它的key值，我只需要取book的isbn的值作为key
+//                    当function(Book book)上有@Cacheable时，它的key值，我只需要取book的isbn的值作为key
                     sb.append(params[0].getClass().getMethod("getIsbn", null).invoke(params[0], null).toString());
                 }catch (NoSuchMethodException no){
                     no.printStackTrace();

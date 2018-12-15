@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * @author: andy
  * @Date: 2018/1/15 15:39
- * @Description:在同一个JVM中基于event事件编程，如果要在不同的JVM中实现event编程，必须依赖springcloudbus，用kafka作为中间件
+ * @Description:在同一个JVM中基于event事件编程，如果要在不同的JVM中实现event编程，需依赖springcloudbus，用kafka作为中间件
  */
 
 @Component

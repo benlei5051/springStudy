@@ -1,24 +1,20 @@
 package org.andy.jpa.dao;
 
-import com.sun.org.apache.xml.internal.security.encryption.Transforms;
 import org.andy.jpa.entity.Info;
 import org.andy.jpa.entity.InfoModel;
-import org.andy.jpa.entity.User;
+import org.andy.jpa.entity.Users;
 import org.hibernate.SQLQuery;
 import org.hibernate.transform.Transformers;
 import org.hibernate.type.StringType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -89,10 +85,10 @@ public class InfoTest {
     }
     @Test
     public void testSecuUser(){
-        User user = new User();
-        user.setId(222);
-        user.setDelete(true);
-        userRepository.save(user);
+        Users users = new Users();
+        users.setId(222);
+        users.setDelete(true);
+        userRepository.save(users);
     }
 
 }

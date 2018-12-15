@@ -11,11 +11,13 @@ import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -39,7 +41,8 @@ public class LogAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(LogAspect.class);
 
-
+    /**记录方法调用开始时间*/
+    ThreadLocal<Long> startTime = new ThreadLocal<>();
 
  /*   1.execution (*com.wul.spring.aop.impl.AtithmeticCalculator.*(..))
     匹配 ArithmeticCalculator 中声明的所有方法,
@@ -192,6 +195,38 @@ public class LogAspect {
     public void doAfterReturningAdvice2(Object param){
         logger.info("第二个后置返回通知的返回值："+param);
     }
+
+
+
+//    当我们对web层做多个切面时，会有一个问题：究竟先去切入谁？这里引入一个优先级的问题。处理方法非常简单，
+//    我们定义切面时，使用一个注解@Order(i),这个i决定着优先级的高低。
+//
+//    比如，现在定义了两个切面，一个@Order(3)，一个@Order(8)，那么执行时：
+//
+//    在切入点前的操作，按order的值由小到大执行，即：先@Order(3)，后@Order(8)；
+//
+//    在切入点后的操作，按order的值由大到小执行，即：先@Order(8)，后@Order(3)；
+
+
+    @Before("controllerMethodPointcut()")
+    public void doBefore(JoinPoint joinPoint){
+        //记录调用开始时间
+        startTime.set(System.currentTimeMillis());
+
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = requestAttributes.getRequest();
+
+        //记录请求日志
+        logger.info("======>url；"+request.getRequestURL().toString());
+        logger.info("======>httpMethod:"+request.getMethod());
+        logger.info("======>ip:"+ request.getRemoteAddr());
+        logger.info("======>classMethod : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
+        logger.info("======>args："+ Arrays.toString(joinPoint.getArgs()));
+
+    }
+
+
+
 }
 
 

@@ -1,7 +1,7 @@
 package org.andy.jpa.service;
 
 import org.andy.jpa.dao.UserRepository;
-import org.andy.jpa.entity.User;
+import org.andy.jpa.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public User getUserByName(String username) {
+    public Users getUserByName(String username) {
         return userRepository.findByName(username);
     }
 }
