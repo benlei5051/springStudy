@@ -1,0 +1,14 @@
+# to do nothing
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mybatis?characterEncoding=utf8
+    username: root
+    password: root
+# Logger Config
+logging:
+  level:
+    com.baomidou.mybatisplus.samples.quickstart: debug
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/sys/*Mapper.xml

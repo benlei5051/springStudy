@@ -13,6 +13,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>mybatis-example1</module>
+        <module>mybatis-example2</module>
+        <module>mybatis-example3</module>
+        <module>mybatis-example4</module>
     </modules>
 
     <properties>

@@ -16,7 +16,7 @@ public class RetryUtil {
         RetryUtil.subMethod("aaaa","bbbb");
 
     }
-    public static void subMethod(String param1, String param2) {
+    private static void subMethod(String param1, String param2) {
         System.out.println(param1 + param2);
         RetryUtil.setRetryTimes(3).retry(param1, param2);
     }
@@ -29,7 +29,7 @@ public class RetryUtil {
      * @param retryTimes
      * @return
      */
-    public static RetryUtil setRetryTimes(Integer retryTimes) {
+    private static RetryUtil setRetryTimes(Integer retryTimes) {
         if (retryTimesInThread.get() == null) {
             retryTimesInThread.set(retryTimes);
         }
@@ -43,7 +43,7 @@ public class RetryUtil {
      * @param args
      * @return
      */
-    public Object retry(Object... args) {
+    private Object retry(Object... args) {
         try {
             Integer retryTimes = retryTimesInThread.get();
             if (retryTimes <= 0) {
