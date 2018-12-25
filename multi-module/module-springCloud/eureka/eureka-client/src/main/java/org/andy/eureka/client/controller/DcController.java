@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Random;
+
 /**
  * @author: andy
  * @Date: 2018/3/2 16:28
@@ -47,5 +49,13 @@ public class DcController {
             e.printStackTrace();
         }
         return "hi " + name + " ,i am from port:" + port;
+    }
+    @GetMapping("/user/findById")
+    public String findById(@RequestParam("id")String id) throws InterruptedException {
+//        int i = new Random().nextInt(3000);
+        int i = 3000;
+        System.out.println(port + "  线程休眠时间："+i);
+        Thread.sleep(i);
+        return "这个是springcloud的客户端端口号"+port+"----"+id;
     }
 }

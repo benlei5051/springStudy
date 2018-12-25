@@ -4,6 +4,7 @@ package org.andy.hystrix.ribbon.service;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,6 +19,9 @@ public class HelloService {
 
     @Autowired
     RestTemplate restTemplate;
+
+    @Autowired
+    private LoadBalancerClient loadBalancerClient;
 
 
     /**
@@ -45,6 +49,8 @@ public class HelloService {
      */
     @HystrixCommand(fallbackMethod = "timeOutHandle")
     public String testTimeOut() {
+        //随机访问策略
+        loadBalancerClient.choose("service-hi");
         return restTemplate.getForObject("http://SERVICE-HI/dc", String.class);
     }
 

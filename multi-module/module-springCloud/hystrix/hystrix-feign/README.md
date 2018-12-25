@@ -4,7 +4,10 @@ https://blog.csdn.net/VitaminZH/article/details/80892395
 深入理解Feign之源码解析
 https://blog.csdn.net/forezp/article/details/73480304
 
-
+因为Feign是对springcloud Ribbon和springcloud Hystrix的封装，所以Feign是带短路器 的，需要我们在配置文件中，开启短路器。
+feign:
+  hystrix:
+    enabled: true
 
 
 

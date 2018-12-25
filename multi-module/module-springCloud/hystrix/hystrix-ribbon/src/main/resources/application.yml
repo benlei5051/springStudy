@@ -10,6 +10,13 @@ eureka:
 server:
   port: 8764
 
+#  Ribbon选择策略
+service-hi:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+
+
 hystrix:
   command:
     default:

@@ -1,0 +1,39 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8765
+spring:
+  application:
+    name: service-feign
+
+#  FeignClient的默认超时时间为10s，readtimeout 60s, 不会开启重试机制，需要自定义配置。
+feign:
+  hystrix:
+    enabled: true
+#  MaxAutoRetries：首个处理的提供者，重试的次数
+#
+#  MaxAutoRetriesNextServer：首个提供者无法处理给其他提供者处理，
+#  重试的次数，首个提供者也会作为其他提供者，所有的提供者都重试失败，则返回失败。
+service-hi:
+  ribbon:
+    #配置首台服务器重试1次
+    MaxAutoRetries: 1
+    #配置其他服务器重试两次
+    MaxAutoRetriesNextServer: 2
+    #链接超时时间
+    ConnectTimeout: 500
+    #请求处理时间
+    ReadTimeout: 2000
+    #每个操作都开启重试机制
+    OkToRetryOnAllOperations: true
+
+#配置断路器超时时间，默认是1000（1秒）
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 800001

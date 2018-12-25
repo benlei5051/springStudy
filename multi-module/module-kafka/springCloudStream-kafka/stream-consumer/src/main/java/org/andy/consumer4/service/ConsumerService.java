@@ -1,6 +1,5 @@
 package org.andy.consumer4.service;
 
-import org.andy.common.entity.MessageEntity;
 import org.andy.common.chanel.MyChannel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +19,7 @@ public class ConsumerService {
 
     @StreamListener(MyChannel.INPUT)
     public void process(String msg) {
-        logger.info("received:--------"+msg);
+        logger.info("received:--------" + msg);
     }
 }
 
