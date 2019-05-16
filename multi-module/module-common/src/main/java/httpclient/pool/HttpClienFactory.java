@@ -75,9 +75,10 @@ public class HttpClienFactory {
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
+                System.out.println(connectionManager.getTotalStats().toString());
                 // 关闭失效的连接
                 connectionManager.closeExpiredConnections();
-                // 可选的, 关闭30秒内不活动的连接
+                // 可选的, 关闭60秒内不活动的连接
                 connectionManager.closeIdleConnections(60, TimeUnit.SECONDS);
             }
         }, 1000 * 120, 1000 * 120);

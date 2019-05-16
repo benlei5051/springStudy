@@ -2,7 +2,6 @@ package org.andy.optional;
 
 import org.andy.LinkinException;
 import org.andy.lambda.entity.Person;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Optional;
 

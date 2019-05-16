@@ -23,6 +23,8 @@
         <module>module-message-template</module>
         <module>module-persistence</module>
         <module>module-microservice</module>
+        <module>module-shiro</module>
+        <module>module-standard</module>
     </modules>
 
     <properties>

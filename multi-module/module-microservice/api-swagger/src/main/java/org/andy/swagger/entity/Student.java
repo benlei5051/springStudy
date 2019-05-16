@@ -1,7 +1,10 @@
 package org.andy.swagger.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
+import java.time.LocalDateTime;
 
 /**
  * @author: andy
@@ -41,6 +44,14 @@ public class Student {
      */
     @ApiModelProperty("家庭住址")
     private String address;
+
+
+    /**
+     * 出生时间
+     */
+    @ApiModelProperty("出生时间")
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime birthDay;
 
 
     public int getId() {
@@ -89,5 +100,13 @@ public class Student {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public LocalDateTime getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(LocalDateTime birthDay) {
+        this.birthDay = birthDay;
     }
 }

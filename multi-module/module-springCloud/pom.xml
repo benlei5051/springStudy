@@ -17,13 +17,15 @@
         <module>hystrix</module>
         <module>config</module>
         <module>bus</module>
+        <module>zuul</module>
+        <module>gateway</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <spring-cloud.version>Finchley.SR1</spring-cloud.version>
+        <spring-cloud.version>Finchley.SR2</spring-cloud.version>
         <spring-boot.version>2.0.4.RELEASE</spring-boot.version>
     </properties>
 

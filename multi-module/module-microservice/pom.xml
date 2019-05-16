@@ -17,6 +17,7 @@
         <module>api-validator</module>
         <module>api-file</module>
         <module>spring-retry</module>
+        <module>api-filter</module>
     </modules>
 
     <properties>

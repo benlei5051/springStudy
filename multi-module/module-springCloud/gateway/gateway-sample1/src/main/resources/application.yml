@@ -1,0 +1,51 @@
+#######################################################
+# id：我们自定义的路由 ID，保持唯一
+# uri：目标服务地址
+# predicates：路由条件，Predicate 接受一个输入参数，返回一个布尔值结果。该接口包含多种默认方法来将 Predicate 组合成其他复杂的逻辑（比如：与，或，非）。
+# filters：过滤规则，本示例暂时没用。
+# 访问http://localhost:8080/spring-cloud   实际是http://www.ityouknow.com/spring-cloud
+######################################################
+server:
+  port: 8080
+spring:
+  cloud:
+    gateway:
+      routes:
+#      - id: neo_route
+#        uri: http://www.ityouknow.com
+#        predicates:
+#        - Path=/spring-cloud
+      - id: time_route
+        uri: http://ityouknow.com
+        predicates:
+        - After=2018-01-20T06:06:06+08:00[Asia/Shanghai]
+#        - Before=2018-01-20T06:06:06+08:00[Asia/Shanghai]
+#        - Between=2018-01-20T06:06:06+08:00[Asia/Shanghai], 2019-01-20T06:06:06+08:00[Asia/Shanghai]
+#      - id: cookie_route
+#        uri: http://ityouknow.com
+#        predicates:
+#        - Cookie=ityouknow, kee.e
+#      - id: header_route
+#        uri: http://ityouknow.com
+#        predicates:
+#        - Header=X-Request-Id, \d+
+#      - id: host_route
+#        uri: http://ityouknow.com
+#        predicates:
+#        - Host=**.ityouknow.com
+#      - id: method_route
+#        uri: http://ityouknow.com
+#        predicates:
+#        - Method=GET
+#      - id: host_route
+#        uri: http://ityouknow.com
+#        predicates:
+#        - Path=/foo/{segment}
+#      - id: query_route
+#        uri: http://ityouknow.com
+#        predicates:
+#         - Query=keep, pu.
+#      - id: remoteaddr_route
+#        uri: http://ityouknow.com
+#        predicates:
+#        - RemoteAddr=192.168.126.218/24

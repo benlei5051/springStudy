@@ -20,6 +20,11 @@ import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
 
 
 /**
@@ -184,7 +189,13 @@ public class LambdaDemo {
         //flatMap 把 input Stream 中的层级结构扁平化，就是将最底层元素抽出来放到一起，最终 output 的新 Stream 里面已经没有 List 了，都是直接的数字。
 
     }
+    public static void test21() {
+        Stream<String> words = Stream.of("Java", "Magazine", "is", "the", "best");
 
+        Map<String, Long> letterToCount =words.map(w -> w.split(""))
+                .flatMap(Arrays::stream)
+                .collect(groupingBy(identity(), counting()));
+    }
     /**
      * allmatch
      * allMatch用于检测是否全部都满足指定的参数行为，如果全部满足则返回true，例如我们希望检测是否所有的学生都已满18周岁，那么可以实现为：
@@ -274,7 +285,7 @@ public class LambdaDemo {
      * 收集器更加适用于可变容器上的归约操作，这些收集器广义上均基于Collectors.reducing()实现。
      */
     public static void lam14() {
-        long count1 = students.stream().collect(Collectors.counting());
+        long count1 = students.stream().collect(counting());
 
         // 进一步简化
         long count2 = students.stream().count();
@@ -324,24 +335,24 @@ public class LambdaDemo {
      */
     public static void lam16() {
 
-        Map<String, Student> collect = students.stream().collect(Collectors.groupingBy(Student::getSchool,
+        Map<String, Student> collect = students.stream().collect(groupingBy(Student::getSchool,
                 Collectors.collectingAndThen(
                         Collectors.maxBy(Comparator.comparingInt(Student::getAge)),
                         Optional::get
                 )));
 
 
-        Map<String, List<Student>> groups = students.stream().collect(Collectors.groupingBy(Student::getSchool));
+        Map<String, List<Student>> groups = students.stream().collect(groupingBy(Student::getSchool));
         System.out.println(groups);
 //   groupingBy接收一个分类器Function<? super T, ? extends K> classifier，我们可以自定义分类器来实现需要的分类效果。
 //   上面演示的是一级分组，我们还可以定义多个分类器实现 多级分组，比如我们希望在按学校分组的基础之上再按照专业进行分组，实现如下：
         Map<String, Map<String, List<Student>>> groups2 = students.stream().collect(
-                Collectors.groupingBy(Student::getSchool,  // 一级分组，按学校
-                        Collectors.groupingBy(Student::getMajor)));  // 二级分组，按专业
+                groupingBy(Student::getSchool,  // 一级分组，按学校
+                        groupingBy(Student::getMajor)));  // 二级分组，按专业
         System.out.println(groups2);
 //实际上在groupingBy的第二个参数不是只能传递groupingBy，
 // 还可以传递任意Collector类型，比如我们可以传递一个Collector.counting，用以统计每个组的个数：
-        Map<String, Long> group3 = students.stream().collect(Collectors.groupingBy(Student::getSchool, Collectors.counting()));
+        Map<String, Long> group3 = students.stream().collect(groupingBy(Student::getSchool, counting()));
         System.out.println(group3);
     }
 
@@ -371,7 +382,7 @@ public class LambdaDemo {
                 new Person("Greg", 35));
         //groupingBy方法参数第一个作为分类器，第二个作为对分类结果进行进一步操作的collector。
         Map<Integer, List<String>> nameOfPeopleByAge = people.stream()
-                .collect(Collectors.groupingBy(Person::getAge, Collectors.mapping(Person::getName, Collectors.toList())));
+                .collect(groupingBy(Person::getAge, Collectors.mapping(Person::getName, Collectors.toList())));
         System.out.println(nameOfPeopleByAge);
 
     }
@@ -386,7 +397,7 @@ public class LambdaDemo {
         Comparator<Person> byAge = Comparator.comparing(Person::getAge);
         Map<Character, Optional<Person>> oldestPersonInEachAlphabet = people.stream()
           //      .collect(Collectors.groupingBy(person -> person.getName().charAt(0), Collectors.reducing(BinaryOperator.maxBy(byAge))));
-                .collect(Collectors.groupingBy(person -> person.getName().charAt(0), Collectors.maxBy(byAge)));
+                .collect(groupingBy(person -> person.getName().charAt(0), Collectors.maxBy(byAge)));
         System.out.println("Oldest person in each alphabet: " + oldestPersonInEachAlphabet.get('S'));
         //以上的groupingBy方法的第二个参数执行了归约(Reduction)操作，而不是之前的映射(Mapping)操作。
         // 并且利用了BinaryOperator中定义的静态方法maxBy。
@@ -560,6 +571,7 @@ public class LambdaDemo {
         Files.createDirectory(Paths.get("f:" + File.separator + "test"));
 //        Files.walk(Paths.get("D:" + File.separator + "java"),2).forEach(System.out::println);
     }
+
 
 
 }

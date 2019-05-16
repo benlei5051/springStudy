@@ -29,7 +29,7 @@ public class UserInfo implements Serializable {
     private Date birthday;
 
     @CheckMessageType
-//    @JsonView(ProjectSimpleView.class)
+    @JsonView(ProjectSimpleView.class)
     private String message;
 
     public Integer getId() {

@@ -4,26 +4,21 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.andy.swagger.entity.Student;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 import java.awt.print.Pageable;
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 /**
  * @author: andy
@@ -54,6 +49,14 @@ public class StudentController {
     @RequestMapping(value = "student", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addStudent(@RequestBody Student student) {
         return;
+    }
+
+    @ApiOperation(value = "findStudent")
+    @RequestMapping(value = "findStudent", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Student findStudent(@RequestBody Student student) {
+        LocalDateTime plus = student.getBirthDay().plus(5, ChronoUnit.MINUTES);
+        student.setBirthDay(plus);
+        return student;
     }
 
 
@@ -95,5 +98,6 @@ public class StudentController {
             return ResultStatusCode.getMsg(e.getMessage());
         }
     }*/
+
 }
 

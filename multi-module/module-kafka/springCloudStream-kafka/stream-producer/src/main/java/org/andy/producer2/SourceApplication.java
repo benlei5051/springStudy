@@ -9,8 +9,8 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-@SpringBootApplication(scanBasePackages = {"org.andy.common", "org.andy.producer2"})
+//stream-common 配置了spring.factories,只需要在pom文件中引入module,故不需要在这里特别指定扫描的包名
+@SpringBootApplication
 @EnableAsync
 public class SourceApplication {
 

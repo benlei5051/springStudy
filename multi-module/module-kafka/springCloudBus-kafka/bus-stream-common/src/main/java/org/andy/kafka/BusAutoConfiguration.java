@@ -95,5 +95,8 @@ public class BusAutoConfiguration implements ImportAware {
         }
 
     }
-    //上面流程大概是实现了ImportAware接口，也就是注解被解析完之后的一个回调，然后通过这个回调拿到具体的参数而已
+
+   // 注意到这个类BusAutoConfiguration注解了@Configuration并实现了ImportAware接口的setImportMetadata方法,
+    // 然后通过其metadata拿到了@EEnableCardBus注解上的consumerGroup参数，这样就实现了通过注解参数来对配置类作设置的功能
+    // （测试去除@Configuration注解，则ImportAware失效，无法触发setImportMetadata方法的调用）。
 }

@@ -3,6 +3,7 @@ package org.andy.date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Clock;
+import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -15,6 +16,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.TemporalField;
 import java.util.Calendar;
 import java.util.Date;
@@ -130,4 +132,41 @@ public class Java8Tester {
         String formattedZonedDate = formatter.format(ZonedDateTime.now());
         System.out.println("formattedZonedDate = " + formattedZonedDate);
     }
+
+    public static LocalDateTime UDateToLocalDateTime(Date date) {
+        return LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+    }
+
+    public static LocalDate UDateToLocalDate(Date date) {
+        return UDateToLocalDateTime(date).toLocalDate();
+    }
+
+    public static LocalTime UDateToLocalTime(Date date) {
+        return UDateToLocalDateTime(date).toLocalTime();
+    }
+
+
+    public static Date LocalDateTimeToUdate(LocalDateTime localDateTime) {
+        ZoneId zone = ZoneId.systemDefault();
+        Instant instant = localDateTime.atZone(zone).toInstant();
+        return  Date.from(instant);
+    }
+    // 取今天：2018-03-18
+    LocalDate today = LocalDate.now();
+
+    // 取本月第1天： 2018-03-01
+    LocalDate firstDayOfThisMonth = today.with(TemporalAdjusters.firstDayOfMonth());
+
+    // 取本月第10天：2018-03-10
+    LocalDate tenDayOfThisMonth = today.withDayOfMonth(10);
+
+    // 取本月最后一天（自动识别28、29、30、31）：2018-03-31
+    LocalDate lastDayOfThisMonth = today.with(TemporalAdjusters.lastDayOfMonth());
+
+    // 取下一天：2018-03-19
+    LocalDate lastDay = today.plusDays(1);
+
+    // 取这个月第一个周一：2018-03-05
+    LocalDate firstMondayOfThisMonth = today.with(TemporalAdjusters.firstInMonth(DayOfWeek.MONDAY));
+
 }

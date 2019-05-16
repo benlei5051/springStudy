@@ -1,0 +1,35 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8769
+spring:
+  application:
+    name: service-zuul
+zuul:
+  routes:
+    api-a:
+      path: /api-a/**
+      serviceId: service-ribbon
+    api-b:
+      path: /api-b/**
+      retryable: true
+      serviceId: service-feign
+#MaxAutoRetries +  MaxAutoRetriesNextServer + (MaxAutoRetries * MaxAutoRetriesNextServer  )
+#  ribbon.MaxAutoRetries 设置为1，请求某服务6s超时后准备重试，该重试策略会先尝试再访问该实例，如果失败1次之后才更换实例访问。
+#  ribbon.MaxAutoRetriesNextServer 决定了尝试更换2次实例
+service-feign:
+  ribbon:
+    #每台服务器最多重试次数，但是首次调用不包括在内
+    MaxAutoRetries: 3
+    #最多重试多少台服务器
+    MaxAutoRetriesNextServer: 0
+    ReadTimeout: 1000
+#开启所有暴露端点
+#注意在使用Http访问端点时，需要加上默认/actuator 前缀
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

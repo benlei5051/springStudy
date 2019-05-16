@@ -29,6 +29,7 @@ service-hi:
     #每个操作都开启重试机制
     OkToRetryOnAllOperations: true
 
+#  一般情况下 都是 ribbon 的超时时间（<）hystrix的超时时间（因为涉及到ribbon的重试机制）
 #配置断路器超时时间，默认是1000（1秒）
 hystrix:
   command:

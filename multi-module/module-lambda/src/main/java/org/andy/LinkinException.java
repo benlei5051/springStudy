@@ -23,6 +23,7 @@ public class LinkinException extends RuntimeException {
     }
 
 
+    @Override
     public String getMessage() {
         return "No value present in the Optional instance";
     }

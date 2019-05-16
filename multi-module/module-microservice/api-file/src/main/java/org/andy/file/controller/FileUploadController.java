@@ -95,6 +95,7 @@ public class FileUploadController {
     public ResponseEntity handleStorageFileNotFound(StorageFileNotFoundException exc) {
         return ResponseEntity.notFound().build();
     }
+
     //支持正则
     @RequestMapping(value="/test6/{textualPart:[a-z-]+}/{numericPart:[\\d]+}")
     @ResponseBody

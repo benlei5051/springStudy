@@ -8,7 +8,7 @@ import org.springframework.cloud.stream.messaging.Sink;
 public class MsgSink {
 
 	@StreamListener(Sink.INPUT)
-	public void messageSink(Object payload) {
+	public void messageSink( Object payload) {
 		System.out.println("Received: " + payload);
 	}
 

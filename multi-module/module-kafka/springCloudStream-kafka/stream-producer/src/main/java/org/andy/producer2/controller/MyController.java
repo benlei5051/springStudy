@@ -24,7 +24,7 @@ public class MyController {
     @RequestMapping(value = "/publish", method = RequestMethod.GET)
     public String publish() {
         final FeeResponseEvent event =
-                new FeeResponseEvent("ares");
+                new FeeResponseEvent("Hello World...");
         context.publishEvent(event);
         return "event published";
     }
